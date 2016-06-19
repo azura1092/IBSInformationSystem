@@ -1,0 +1,4 @@
+EMPLOYEE NUMBER,FIRST NAME,MIDDLE NAME,LAST NAME,SEX,BIRTHDATE,POSITION,DIVISION,CONTACT NUMBER,EMAIL ADDRESS,CURRENT ADDRESS,PERMANENT ADDRESS,COURSE,SCHOL GRADUATED,YEAR GRADUATED
+161001111,Juan,Reyes,dela Cruz,M,1/29/1997,Instructor 1,Genetics,9123456789,email@email.com,"Calamba City, Laguna","Calamba City, Laguna",BS Biology,UPLB,2016
+161001112,Kris,Aragon,Hernandez,F,2/28/1995,Instructor 2,Microbiology,9123456789,email@email.com,"Calamba City, Laguna","Calamba City, Laguna",BS Biology,UPLB,2015
+161001113,Joel,Cortez,Diaz,M,9/11/1996,Instructor 1,Microbiology,9123456789,email@email.com,"Calamba City, Laguna","Calamba City, Laguna",BS Biology,UPLB,2016

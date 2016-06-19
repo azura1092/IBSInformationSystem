@@ -1,0 +1,31 @@
+<?php $__env->startSection('content'); ?>
+
+	<?php if($status == 0 || $status == 2): ?>
+		<div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <?php echo e($message); ?>
+
+    	</div>
+
+	<?php elseif($status == 1): ?>
+		<div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <?php echo e($message); ?>
+
+    	</div>
+
+	<?php endif; ?>
+
+
+	<form action="<?php echo e(url('/process-graduate-upload-bulk-data')); ?>" method="post" enctype="multipart/form-data">
+    	<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+		Select csv file to upload:<br/><br/>
+    	<div class="fileUpload btn ">
+    		<span>Choose file</spam>
+		    <input type="file" class="upload" name="fileToUpload" id="fileToUpload" required>
+		</div>
+		<button type='submit' class='btn btn-default' value="Upload CSV File" name="submit">Upload</button>
+	</form>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('alumni', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

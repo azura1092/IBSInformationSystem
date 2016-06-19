@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
+
+	<!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+ -->
+ 	<link rel="icon" href="img/favicon.ico" />
+ 	<link rel="stylesheet" href="<?php echo e(asset('/css/font-awesome.min.css')); ?>">
+	
+	<link rel="stylesheet" href="<?php echo e(asset('/css/reset.css')); ?>"> <!-- CSS reset -->
+
+	<link rel="stylesheet" href="<?php echo e(asset('/css/style.css')); ?>">
+	<link rel="stylesheet" href="<?php echo e(asset('/css/util/util.css')); ?>">
+
+	<link rel="stylesheet" href="<?php echo e(asset('/css/dashboard.css')); ?>"> <!-- Resource style -->
+	<link rel="stylesheet" href="<?php echo e(asset('/css/bootstrap.css')); ?>">
+	<link href="<?php echo e(asset('/css/app.css')); ?>" rel="stylesheet">
+
+	<!-- Fonts -->
+	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+
+	<!--<script src="js/jquery.min.js"></script>-->
+	<script src="<?php echo e(asset('/js/bootstrap.min.js')); ?>"></script>
+	<script src="<?php echo e(asset('js/modernizr.js')); ?>"></script> <!-- Modernizr -->
+  	
+
+
+    
+	<title>IBS-IS | Home</title>
+</head>
+<body>
+	<header class="cd-main-header">
+		<a href="#0" class="cd-logo"><img src="<?php echo e(asset('/img/logo.png')); ?>" alt="Logo"></a>
+
+		<a href="#0" class="cd-nav-trigger">Menu<span></span></a> <!-- mobile -->
+		
+
+	</header>
+	
+			<!-- <h1>IBS Information System</h1> -->
+			<!--<div class="container-fluid">-->
+				<?php echo $__env->yieldContent('content'); ?>
+			<!--</div>-->
+
+</body>
+</html>

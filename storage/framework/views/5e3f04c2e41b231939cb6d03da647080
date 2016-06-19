@@ -1,0 +1,52 @@
+<?php $__env->startSection('content'); ?>
+
+	<?php if(count($fileRecords) == 0): ?>
+		<h1>No files uploaded yet</h1>
+
+	<?php else: ?>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<div id="view-files" class="panel panel-default">
+				<div class="panel-body">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<td><h4>Uploaded Files</h4></td>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach($fileRecords as $f): ?>
+								<tr>
+									<td class="col-xs-12">
+										<div class="row">
+										<form method="post" action="<?php echo e(url('/processDeleteFile')); ?>">
+											<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+											<input type="hidden" name="fileName" id="fileName" value="<?php echo e($f->fileName); ?>">
+											<input type="hidden" name="fileID" id="fileID" value="<?php echo e($f->id); ?>">
+
+											<div class="col-xs-1"><button type="submit" class="btn btn-danger btn-block"> x </button></div>
+										</form>	
+											<div class="col-xs-2"><button type="btn" class="btn btn-success btn-block" onclick="viewFile('<?php echo e($f->employeeNum); ?> - <?php echo e($f->fileName); ?>')"> View File </button></div>
+											<div class="col-xs-8"><p><?php echo e($f->fileName); ?></p></div>
+										</div>
+									</td>
+								</tr>
+							<?php endforeach; ?>
+						</tbody>
+						
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php endif; ?>
+
+	<script type="text/javascript">
+		function viewFile(p){
+			window.open("/get-faculty-file-" + p);
+		}
+	</script>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('facultyandstaff.faculty.dash-faculty', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

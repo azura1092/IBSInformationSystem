@@ -1,0 +1,96 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="row">
+	<div class="col-xs-12">
+		<h3>Welcome, <?php echo e($user[0]->firstName); ?></h3>
+		<hr></hr>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='col-xs-12'>
+
+		<div id="view-profile" class='panel panel-default'>
+			<div class='panel-body'>
+				<table class="table table-hover">
+					<p style="text-align: right; margin-bottom: 25px;">
+						<form method="POST" action=" <?php echo e(url('/edit-staff-profile')); ?> ">
+							<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+							<input type="hidden" name="employeeNum" value="<?php echo e($user[0]->employeeNum); ?>">
+							<button type="submit" id="search-update-button" class="btn btn-default" style="position: absolute; top: 0; right: 15px; border-radius: 0;">
+								Edit Profile
+							</button>
+						</form>
+					</p>
+					<thead>
+						<tr>
+							<td><h4><b>Basic Information</b></h4></td>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td class="col-xs-3">Employee Number</td>
+							<td><?php echo e($user[0]->employeeNum); ?></td>
+						</tr>
+
+						<tr>
+							<td class="col-xs-3">First Name</td>
+							<td><?php echo e($user[0]->firstName); ?></td>
+						</tr>
+						<tr>
+							<td>Middle Name</td>
+							<td><?php echo e($user[0]->middleName); ?></td>
+						</tr>
+						<tr>
+							<td>Last Name</td>
+							<td><?php echo e($user[0]->lastName); ?></td>
+						</tr>
+
+						<tr>
+							<td class="col-xs-3">Sex</td>
+							<td>
+								<?php if( $user[0]->sex == 'F'): ?>
+									Female
+								<?php elseif( $user[0]->sex == 'M'): ?>
+									Male
+								<?php endif; ?>
+							</td>
+						</tr>
+						<tr>
+							<td>Birthday</td>
+							<td><?php echo e($user[0]->birthdate); ?></td>
+						</tr>
+						<tr>
+							<td>Contact Number</td>
+							<td><?php echo e($user[0]->contactNum); ?></td>
+						</tr>
+						<tr>
+							<td>Email Address</td>
+							<td><?php echo e($user[0]->emailAddress); ?></td>
+						</tr>
+						<tr>
+							<td>Current Address</td>
+							<td><?php echo e($user[0]->currentAddress); ?></td>
+						</tr>
+						<tr>
+							<td>Permanent Address</td>
+							<td><?php echo e($user[0]->permanentAddress); ?></td>
+						</tr>
+						
+						<tr>
+							<td class="col-xs-3">Position</td>
+							<td><?php echo e($user[0]->position); ?></td>
+						</tr>
+						
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('facultyandstaff.staff.dash-staff', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

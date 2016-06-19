@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="<?php echo e(asset('/css/app.css')); ?>"> <!-- CSS reset -->
+	<link rel="stylesheet" href="<?php echo e(asset('/css/reset.css')); ?>"> <!-- CSS reset -->
+	<link rel="stylesheet" href="<?php echo e(asset('/css/login.css')); ?>"> <!-- Gem style -->
+	<script src="<?php echo e(asset('/js/modernizr.js')); ?>"></script> <!-- Modernizr -->
+  	
+	<title>Log In &amp; Sign Up Form</title>
+</head>
+<body>
+	<?php echo $__env->yieldContent('content'); ?>
+<script src="<?php echo e(asset('/js/jquery-2.1.4.js')); ?>"></script>
+<script src="<?php echo e(asset('js/login.js')); ?>"></script> <!-- Gem jQuery -->
+</body>
+</html>
