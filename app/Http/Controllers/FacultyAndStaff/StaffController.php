@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers\FacultyAndStaff;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\MainController;
 
 use Illuminate\Http\Request;
 use Input;
@@ -17,11 +17,14 @@ use App\ApprovedRequest;
 use App\EditNotice;
 use App\DeclinedRequest;
 
-class StaffController extends Controller {
-
-	public function index(){
-		if(Session::has('type')){
-			if(Session::get('type') == 0){
+class StaffController extends MainController 
+{
+	public function index()
+	{
+		if(Session::has('type'))
+		{
+			if(Session::get('type') == 0)
+			{
 				$enum = Session::get('userEmp')['employeeNum'];
 				$approvedCount = ApprovedRequest::where('employeeNum', '=', $enum)->get(); 
 				$declinedCount = DeclinedRequest::where('employeeNum', '=', $enum)->get(); 
@@ -30,13 +33,18 @@ class StaffController extends Controller {
 				return view('facultyandstaff.staff.staff-home', compact('approvedCount', 'declinedCount', 'editNoticeCount'));
 			}
 		}
+
 		Session::put('error', 'You must log in first!');
+
 		return redirect('login');
 	}
 
-	public function viewProfile(){
-		if(Session::has('type')){
-			if(Session::get('type') == 0){
+	public function viewProfile()
+	{
+		if(Session::has('type'))
+		{
+			if(Session::get('type') == 0)
+			{
 				$enum = Session::get('userEmp')['employeeNum'];
 				$approvedCount = ApprovedRequest::where('employeeNum', '=', $enum)->get(); 
 				$declinedCount = DeclinedRequest::where('employeeNum', '=', $enum)->get(); 
@@ -46,20 +54,26 @@ class StaffController extends Controller {
 				return view('facultyandstaff.staff.staff-profile', compact('approvedCount', 'declinedCount', 'editNoticeCount', 'user'));
 			}
 		}
+
 		Session::put('error', 'You must log in first!');
+
 		return redirect('login');		
 	}
 
-	public function editProfile(){
-		if(Session::has('type')){
-			if(Session::get('type') == 0){
+	public function editProfile()
+	{
+		if(Session::has('type'))
+		{
+			if(Session::get('type') == 0)
+			{
 				$enum = Session::get('userEmp')['employeeNum'];
 				$approvedCount = ApprovedRequest::where('employeeNum', '=', $enum)->get(); 
 				$declinedCount = DeclinedRequest::where('employeeNum', '=', $enum)->get(); 
 				$editNoticeCount = EditNotice::where('employeeNum', '=', $enum)->get();
 				$staffpositions = StaffPosition::all();
 
-				if(Input::has('employeeNum')){
+				if(Input::has('employeeNum'))
+				{
 					Session::forget('editStatus');
 					Session::forget('editEmployeeID');
 
@@ -68,30 +82,39 @@ class StaffController extends Controller {
 					Session::put('editStatus', false);
 					Session::put('editEmployeeID', $enum);
 				}
-				else{
+				else
+				{
 					$employee = Employee::where('employeeNum', '=', Session::get('editEmployeeID'))->get();
 					$status = Session::get('editStatus');
 
 					Session::put('editStatus', false);
 				}
 
+				parent::log('EDP', 'Edited profile.');
+
 				return view('facultyandstaff.staff.edit-staff-profile', compact('approvedCount', 'declinedCount', 'editNoticeCount', 'employee', 'status', 'staffpositions'));
 			}
 		}
+
 		Session::put('error', 'You must log in first!');
+
 		return redirect('login');
 	}
 
-	public function requestEditProfile(){
-		if(Session::has('type')){
-			if(Session::get('type') == 0){
+	public function requestEditProfile()
+	{
+		if(Session::has('type'))
+		{
+			if(Session::get('type') == 0)
+			{
 				$enum = Input::get('employeeNum');
 				$user = Employee::where('employeeNum', '=', $enum)->get();
 				$requestexist = EditRequest::where('employeeNum', '=', $enum)->get();
 
 				$timestamp = date('Y-m-d H:i:s');
 
-				if(count($requestexist) > 0){
+				if(count($requestexist) > 0)
+				{
 					EditRequest::where('employeeNum', '=', $enum)->update([
 						'employeeNum' => Session::get('userEmp')['employeeNum'],
 						'type' => Session::get('userEmp')['type'],
@@ -108,8 +131,10 @@ class StaffController extends Controller {
 						'updated_at' => $timestamp
 					]);
 				}
-				else{
-					EditRequest::insert([
+				else
+				{
+					EditRequest::insert
+					([
 						'employeeNum' => Session::get('userEmp')['employeeNum'],
 						'type' => Session::get('userEmp')['type'],
 						'firstName' => Input::get('firstName'),
@@ -128,16 +153,22 @@ class StaffController extends Controller {
 			
 				Session::put('editStatus', true);
 				Session::put('requestEditEmployeeID', $enum);
+
 				return redirect('edit-staff-profile');
 			}
 		}
+
 		Session::put('error', 'You must log in first!');
+
 		return redirect('login');
 	}
 
-	public function viewAllNotifications(){
-		if(Session::has('type')){
-			if(Session::get('type') == 0){
+	public function viewAllNotifications()
+	{
+		if(Session::has('type'))
+		{
+			if(Session::get('type') == 0)
+			{
 				$enum = Session::get('userEmp')['employeeNum'];
 				$approvedCount = ApprovedRequest::where('employeeNum', '=', $enum)->get(); 
 				$declinedCount = DeclinedRequest::where('employeeNum', '=', $enum)->get();
@@ -150,108 +181,136 @@ class StaffController extends Controller {
 				return view('facultyandstaff.staff.view-notifications', compact('approvedCount', 'declinedCount', 'editNoticeCount', 'enum', 'approvedusers', 'declinedusers', 'editnoticeusers'));
 			}
 		}
+
 		Session::put('error', 'You must log in first!');
+
 		return redirect('login');
 	}
 
-	public function processDismissStaffNotif(){
-		if(Session::has('type')){
-			if(Session::get('type') == 0){
+	public function processDismissStaffNotif()
+	{
+		if(Session::has('type'))
+		{
+			if(Session::get('type') == 0)
+			{
 				$enum = Session::get('userEmp')['employeeNum'];
 				$notifType = Input::get('notifType');
 				
-				if($notifType == "approvedRequest"){
+				if($notifType == "approvedRequest")
+				{
 					$empID = Input::get('empID');
 					ApprovedRequest::where('id', '=', $empID)->delete();
 				}
 				
-				else if($notifType == "declinedRequest"){
+				else if($notifType == "declinedRequest")
+				{
 					$empID = Input::get('empID');
 					DeclinedRequest::where('id', '=', $empID)->delete();	
 				}
 
-				else if($notifType == "editNotice"){
+				else if($notifType == "editNotice")
+				{
 					$empID = Input::get('empID');
 					EditNotice::where('id', '=', $empID)->delete();
 				}
+
 				return redirect('staff-notifications');
 			}
 		}
+
 		Session::put('error', 'You must log in first!');
+
 		return redirect('login');
 	}
 
-	public function searchGraduateStaff($type){
+	public function searchGraduateStaff($type)
+	{
 		
-		if(Session::get('type') == 0){
-				$enum = Session::get('userEmp')['employeeNum'];
-				$approvedCount = ApprovedRequest::where('employeeNum', '=', $enum)->get(); 
-				$declinedCount = DeclinedRequest::where('employeeNum', '=', $enum)->get(); 
-				$editNoticeCount = EditNotice::where('employeeNum', '=', $enum)->get();
-
+		if(Session::get('type') == 0)
+		{
+			$enum = Session::get('userEmp')['employeeNum'];
+			$approvedCount = ApprovedRequest::where('employeeNum', '=', $enum)->get(); 
+			$declinedCount = DeclinedRequest::where('employeeNum', '=', $enum)->get(); 
+			$editNoticeCount = EditNotice::where('employeeNum', '=', $enum)->get();
 		}
 		
-		if($type == "major"){
+		if($type == "major")
+		{
 			$major = Input::get('major');
 			$graduates = Graduate::where('major', '=', $major)->paginate(10);
 			$status = false;
+
 			return view('facultyandstaff.staff.view-all-staff', compact('graduates', 'approvedCount', 'declinedCount', 'editNoticeCount'));		
 		}
 
-		else if($type == "mscdegree"){
+		else if($type == "mscdegree")
+		{
 			$mscdegree = Input::get('mscdegree');
 			$graduates = Graduate::where('mscdegree', '=', $mscdegree)->paginate(10);
 			$status = false;
+
 			return view('facultyandstaff.staff.view-all-staff', compact('graduates', 'approvedCount', 'declinedCount', 'editNoticeCount'));		
 		}
 
-		else if($type == "yeargrad"){
+		else if($type == "yeargrad")
+		{
 			$yeargrad = Input::get('yeargrad');
 			$graduates = Graduate::where('yeargrad', '=', $yeargrad)->paginate(10);
 			$status = false;
+
 			return view('facultyandstaff.staff.view-all-staff', compact('graduates', 'approvedCount', 'declinedCount', 'editNoticeCount'));		
 		}
 
-		else if($type == "companyname"){
+		else if($type == "companyname")
+		{
 			$companyname = Input::get('companyname');
 			$graduates = Graduate::where('companyname', '=', $companyname)->paginate(10);
 			$status = false;
+
 			return view('facultyandstaff.staff.view-all-staff', compact('graduates', 'approvedCount', 'declinedCount', 'editNoticeCount'));		
 		}
 
-		else if($type == "lname"){
+		else if($type == "lname")
+		{
 			$lname = Input::get('lname');
 			$graduates = Graduate::where('lname', '=', $lname)->paginate(10);
 			$status = false;
+
 			return view('facultyandstaff.staff.view-all-staff', compact('graduates', 'approvedCount', 'declinedCount', 'editNoticeCount'));		
 		}
-		$graduates = Graduate::orderBy('lname', 'asc')->paginate(10);
 
+		$graduates = Graduate::orderBy('lname', 'asc')->paginate(10);
 		
 		return view('facultyandstaff.staff.view-all-staff', compact('graduates', 'approvedCount', 'declinedCount', 'editNoticeCount'));
 	}
 
-	public function viewAllStaff(){
+	public function viewAllStaff()
+	{
 		$data = DB::table('Graduate')->orderBy('lname', 'asc')->orderBy('mname', 'asc')->orderBy('fname', 'asc')->paginate(10);
-		if(Session::has('deleteStatus')){
+
+		if(Session::has('deleteStatus'))
+		{
 			$status = true;
 			Session::forget('deleteStatus');
 		}
-		else{
+		else
+		{
 			$status = false;
 		}
+
 		return view('facultyandstaff.staff.view-all-staff', compact('data', 'status'));
 		
 	}
 
-	public function visualizeStaff(){
+	public function visualizeStaff()
+	{
 
-		if(Session::get('type') == 0){
+		if(Session::get('type') == 0)
+		{
 				$enum = Session::get('userEmp')['employeeNum'];
 				$approvedCount = ApprovedRequest::where('employeeNum', '=', $enum)->get(); 
 				$declinedCount = DeclinedRequest::where('employeeNum', '=', $enum)->get(); 
 				$editNoticeCount = EditNotice::where('employeeNum', '=', $enum)->get();
-
 		}
 		
 		$places = DB::table('Graduate')->select(DB::raw('country, count(*) as num'))->groupBy('country')->get();
@@ -259,6 +318,5 @@ class StaffController extends Controller {
         $majors = DB::table('Graduate')->select(DB::raw('major, count(*) as num'))->groupBy('major')->get();
 
         return view('facultyandstaff.staff.graphstaff', compact('places', 'population', 'majors','approvedCount', 'declinedCount', 'editNoticeCount'));
-
 	}
 }

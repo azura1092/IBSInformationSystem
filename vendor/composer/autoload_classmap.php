@@ -6,11 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'AddCourseLogsTable' => $baseDir . '/database/migrations/logs/2016_05_02_054028_add_course_logs_table.php',
-    'AddFacultyLogsTable' => $baseDir . '/database/migrations/logs/2016_05_02_053512_add_faculty_logs_table.php',
-    'AddRecordLogsTable' => $baseDir . '/database/migrations/logs/2016_04_30_093936_add_record_logs_table.php',
-    'AddStaffLogsTable' => $baseDir . '/database/migrations/logs/2016_05_02_053458_add_staff_logs_table.php',
-    'ArchiveLogsTable' => $baseDir . '/database/migrations/logs/2016_05_02_054201_archive_logs_table.php',
     'CourseTableSeeder' => $baseDir . '/database/seeds/CourseTableSeeder.php',
     'CreateActivitiesTable' => $baseDir . '/database/migrations/2016_03_24_111214_create_activities_table.php',
     'CreateApprovedRequestsTable' => $baseDir . '/database/migrations/requests/2016_04_29_140848_create_approved_requests_table.php',
@@ -25,6 +20,7 @@ return array(
     'CreateEmployeesTable' => $baseDir . '/database/migrations/2016_03_24_111111_create_employees_table.php',
     'CreateFacultyPositionsTable' => $baseDir . '/database/migrations/positions/2016_04_16_114201_create_faculty_positions_table.php',
     'CreateGraduateTable' => $baseDir . '/database/migrations/2016_04_24_145800_create_graduate_table.php',
+    'CreateLogsTable' => $baseDir . '/database/migrations/logs/2016_05_02_053613_create_logs_table.php',
     'CreateNotificationsTable' => $baseDir . '/database/migrations/2016_03_24_111631_create_notifications_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateProjectsTable' => $baseDir . '/database/migrations/2016_03_24_104203_create_projects_table.php',
@@ -33,15 +29,7 @@ return array(
     'CreateUploadedRecordsTable' => $baseDir . '/database/migrations/2016_04_25_110412_create_uploaded_records_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'DegreeTableSeeder' => $baseDir . '/database/seeds/DegreeTableSeeder.php',
-    'DeleteCourseLogsTable' => $baseDir . '/database/migrations/logs/2016_05_02_054109_delete_course_logs_table.php',
-    'DeleteFacultyLogsTable' => $baseDir . '/database/migrations/logs/2016_05_02_053546_delete_faculty_logs_table.php',
-    'DeleteRecordLogsTable' => $baseDir . '/database/migrations/logs/2016_04_30_093944_delete_record_logs_table.php',
-    'DeleteStaffLogsTable' => $baseDir . '/database/migrations/logs/2016_05_02_053613_delete_staff_logs_table.php',
     'DivisionTableSeeder' => $baseDir . '/database/seeds/DivisionTableSeeder.php',
-    'EditCourseLogsTable' => $baseDir . '/database/migrations/logs/2016_05_02_054056_edit_course_logs_table.php',
-    'EditFacultyLogsTable' => $baseDir . '/database/migrations/logs/2016_05_02_053523_edit_faculty_logs_table.php',
-    'EditRecordLogsTable' => $baseDir . '/database/migrations/logs/2016_04_30_093941_edit_record_logs_table.php',
-    'EditStaffLogsTable' => $baseDir . '/database/migrations/logs/2016_05_02_053534_edit_staff_logs_table.php',
     'EmployeeTableSeeder' => $baseDir . '/database/seeds/EmployeeTableSeeder.php',
     'FacultyPositionTableSeeder' => $baseDir . '/database/seeds/FacultyPositionTableSeeder.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
@@ -49,5 +37,4 @@ return array(
     'SpecializationTableSeeder' => $baseDir . '/database/seeds/SpecializationTableSeeder.php',
     'StaffPositionTableSeeder' => $baseDir . '/database/seeds/StaffPositionTableSeeder.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
-    'UploadBulkLogsTable' => $baseDir . '/database/migrations/logs/2016_05_02_054945_upload_bulk_logs_table.php',
 );

@@ -12,113 +12,15 @@
                     <th>IP Address</th>                                
                 </tr>
             </thead>
-        <?php foreach($addRecord as $row): ?>
-                    <tr>
-                        <td><?php echo e($row->logId); ?></td>
-                        <td><?php echo e($row->userNum); ?></td>
-                        <td>Employee <?php echo e($row->userNum); ?> added a graduate record.</td>
-                        <td><?php echo e($row->created_at); ?></td>
-                        <td><?php echo e($ipaddress); ?></td>
-                    </tr>
-        <?php endforeach; ?>
-        <?php foreach($editRecord as $row): ?>
-                    <tr>
-                        <td><?php echo e($row->logId); ?></td>
-                        <td><?php echo e($row->userNum); ?></td>
-                        <td>Employee <?php echo e($row->userNum); ?> edited a graduate record.</td>
-                        <td><?php echo e($row->created_at); ?></td>
-                        <td><?php echo e($ipaddress); ?></td>
-                    </tr>
-        <?php endforeach; ?>
-        <?php foreach($deleteRecord as $row): ?>
-                    <tr>
-                        <td><?php echo e($row->logId); ?></td>
-                        <td><?php echo e($row->userNum); ?></td>
-                        <td>Employee <?php echo e($row->userNum); ?> deleted a graduate record.</td>
-                        <td><?php echo e($row->created_at); ?></td>
-                        <td><?php echo e($ipaddress); ?></td>
-                    </tr>
-        <?php endforeach; ?>
-        <?php foreach($addStaff as $row): ?>
-                    <tr>
-                        <td><?php echo e($row->logId); ?></td>
-                        <td><?php echo e($row->userNum); ?></td>
-                        <td>Employee <?php echo e($row->userNum); ?> added a staff record.</td>
-                        <td><?php echo e($row->created_at); ?></td>
-                        <td><?php echo e($ipaddress); ?></td>
-                    </tr>
-        <?php endforeach; ?>
-        <?php foreach($addFaculty as $row): ?>
-                    <tr>
-                        <td><?php echo e($row->logId); ?></td>
-                        <td><?php echo e($row->userNum); ?></td>
-                        <td>Employee <?php echo e($row->userNum); ?> added a faculty record.</td>
-                        <td><?php echo e($row->created_at); ?></td>
-                        <td><?php echo e($ipaddress); ?></td>
-                    </tr>
-        <?php endforeach; ?>
-        <?php foreach($addCourse as $row): ?>
-                    <tr>
-                        <td><?php echo e($row->logId); ?></td>
-                        <td><?php echo e($row->userNum); ?></td>
-                        <td>Employee <?php echo e($row->userNum); ?> added a course.</td>
-                        <td><?php echo e($row->created_at); ?></td>
-                        <td><?php echo e($ipaddress); ?></td>
-                    </tr>
-        <?php endforeach; ?>
-        <?php foreach($editStaff as $row): ?>
-                    <tr>
-                        <td><?php echo e($row->logId); ?></td>
-                        <td><?php echo e($row->userNum); ?></td>
-                        <td>Employee <?php echo e($row->userNum); ?> updated an employee record.</td>
-                        <td><?php echo e($row->created_at); ?></td>
-                        <td><?php echo e($ipaddress); ?></td>
-                    </tr>
-        <?php endforeach; ?>
-        <?php foreach($editCourse as $row): ?>
-                    <tr>
-                        <td><?php echo e($row->logId); ?></td>
-                        <td><?php echo e($row->userNum); ?></td>
-                        <td>Employee <?php echo e($row->userNum); ?> updated a course.</td>
-                        <td><?php echo e($row->created_at); ?></td>
-                        <td><?php echo e($ipaddress); ?></td>
-                    </tr>
-        <?php endforeach; ?>
-        <?php foreach($deleteStaff as $row): ?>
-                    <tr>
-                        <td><?php echo e($row->logId); ?></td>
-                        <td><?php echo e($row->userNum); ?></td>
-                        <td>Employee <?php echo e($row->userNum); ?> deleted an employee record.</td>
-                        <td><?php echo e($row->created_at); ?></td>
-                        <td><?php echo e($ipaddress); ?></td>
-                    </tr>
-        <?php endforeach; ?>
-        <?php foreach($deleteCourse as $row): ?>
-                    <tr>
-                        <td><?php echo e($row->logId); ?></td>
-                        <td><?php echo e($row->userNum); ?></td>
-                        <td>Employee <?php echo e($row->userNum); ?> deleted course.</td>
-                        <td><?php echo e($row->created_at); ?></td>
-                        <td><?php echo e($ipaddress); ?></td>
-                    </tr>
-        <?php endforeach; ?>
-        <?php foreach($archive as $row): ?>
-                    <tr>
-                        <td><?php echo e($row->logId); ?></td>
-                        <td><?php echo e($row->userNum); ?></td>
-                        <td>Employee <?php echo e($row->userNum); ?> archived an employee record.</td>
-                        <td><?php echo e($row->created_at); ?></td>
-                        <td><?php echo e($ipaddress); ?></td>
-                    </tr>
-        <?php endforeach; ?>
-        <?php foreach($uploadBulk as $row): ?>
-                    <tr>
-                        <td><?php echo e($row->logId); ?></td>
-                        <td><?php echo e($row->userNum); ?></td>
-                        <td>Employee <?php echo e($row->userNum); ?> uploaded a bulk of data.</td>
-                        <td><?php echo e($row->created_at); ?></td>
-                        <td><?php echo e($ipaddress); ?></td>
-                    </tr>
+
+        <?php foreach($logs as $row): ?>
+            <tr>
+                <td><?php echo e($row->logId); ?></td>
+                <td><?php echo e($row->userNum); ?></td>
+                <td><?php echo e($row->message); ?></td>
+                <td><?php echo e($row->created_at); ?></td>
+                <td><?php echo e($ipaddress); ?></td>
+            </tr>
         <?php endforeach; ?>
 </tbody>
         </table>

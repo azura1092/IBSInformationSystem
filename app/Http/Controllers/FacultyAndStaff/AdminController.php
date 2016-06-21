@@ -6,7 +6,7 @@
 ******************************************************************************/
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\MainController;
 
 //use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -36,16 +36,9 @@ use App\EditRequest;
 use App\ApprovedRequest;
 use App\DeclinedRequest;
 use App\EditNotice;
-use App\AddFacultyLogs;
-use App\AddStaffLogs;
-use App\AddCourseLogs;
-use App\EditStaffLogs;
-use App\EditCourseLogs;
-use App\DeleteStaffLogs;
-use App\DeleteCourseLogs;
-use App\ArchiveLogs;
+use App\Logs;
 
-class AdminController extends Controller 
+class AdminController extends MainController 
 {
 	public function index() 
 	{
@@ -169,11 +162,7 @@ class AdminController extends Controller
 				$temp .= 2;
 				Session::put('temp', 2);
 
-				//generates the log id
-				$logId = 'ADF'.count(AddFacultyLogs::all());	
-
-				//adds the log in the database
-				AddFacultyLogs::create(['logId' => $logId, 'userNum' => Session::get('employeeNum'), 'action'=>'add']);	
+				parent::log('ADF', 'Added an employee.');
 		
 				return redirect('add-faculty-employee');
 			}
@@ -219,8 +208,7 @@ class AdminController extends Controller
 				$temp .= 2;
 				Session::put('temp',2);
 
-				$logId = 'ADS'.count(AddStaffLogs::all());	//generates the log id
-				AddStaffLogs::create(['logId' => $logId, 'userNum' => Session::get('employeeNum'), 'action'=>'add']);	//adds the log in the database
+				parent::log('ADS', 'Added an employee.');
 		
 				return redirect('add-staff-employee');
 			}
@@ -402,9 +390,7 @@ class AdminController extends Controller
 				Session::put('editStatus', true);
 				Session::put('editEmployeeID', $enum);
 
-				$logId = 'EDITS'.count(EditStaffLogs::all());	//generates the log id
-
-				EditStaffLogs::create(['logId' => $logId, 'userNum' => Session::get('employeeNum'), 'action'=>'add']);	//adds the log in the database
+				parent::log('EDITS', 'Edited an employee.');
 
 				$timestamp = date('Y-m-d H:i:s');
 				$requestexist = EditNotice::where('employeeNum', '=', $enum)->get();
@@ -484,10 +470,8 @@ class AdminController extends Controller
 
 				Session::put('deleteStatus', true);
 
-				$logId = 'DELS'.count(DeleteStaffLogs::all());	//generates the log id
+				parent::log('DELS', 'Deleted an employee.');
 
-				DeleteStaffLogs::create(['logId' => $logId, 'userNum' => Session::get('employeeNum'), 'action'=>'add']);	//adds the log in the database
-		
 				return redirect('search-employee-filter');
 			}
 		}
@@ -1083,12 +1067,8 @@ class AdminController extends Controller
 					Session::put('archiveStatus', false);
 				}
 
-				//generates the log id
-				$logId = 'ARCH'.count(ArchiveLogs::all());	
+				parent::log('ARCH', 'Archived an employee.');
 
-				//adds the log in the database
-				ArchiveLogs::create(['logId' => $logId, 'userNum' => Session::get('employeeNum'), 'action'=>'add']);	
-		
 		    	return redirect('search-employee-filter');
 		    }
 		}
@@ -1402,10 +1382,8 @@ class AdminController extends Controller
 				$temp .= 2;
 				Session::put('temp',2);
 
-				$logId = 'ADC'.count(AddCourseLogs::all());	//generates the log id
-				//adds the log in the database
-				AddCourseLogs::create(['logId' => $logId, 'userNum' => Session::get('employeeNum'), 'action'=>'add']);	
-		
+				parent::log('ADC', 'Added course.');
+
 				return redirect('add-course');
 			}
 		}
@@ -1470,10 +1448,9 @@ class AdminController extends Controller
 
 				Session::put('editStatus', true);
 				Session::put('editCouseNum', $courseNum);
-				$logId = 'EDITC'.count(EditCourseLogs::all());	//generates the log id
-				//adds the log in the database
-				EditCourseLogs::create(['logId' => $logId, 'userNum' => Session::get('employeeNum'), 'action'=>'add']);	
-		
+
+				parent::log('EDITC', 'Edited course.');
+
 				return redirect('edit-course-select');
 			}
 		}
@@ -1523,12 +1500,7 @@ class AdminController extends Controller
 					$status = true;
 					$courses = Course::all();		
 
-					$logId = 'DELC'.count(DeleteCourseLogs::all());	//generates the log id
-					DeleteCourseLogs::create(['logId' => $logId, 'userNum' => Session::get('employeeNum'), 'action'=>'add']);	//adds the log in the database
-
-					$courses = Course::all();
-					$logId = 'DELC'.count(DeleteCourseLogs::all());	//generates the log id
-					DeleteCourseLogs::create(['logId' => $logId, 'userNum' => Session::get('employeeNum'), 'action'=>'add']);	//adds the log in the database
+					parent::log('DELC', 'Deleted course.');
 
 					return view('facultyandstaff.admin.delete-course', compact('courses', 'status', 'editnotifs'));		
 					//return redirect('delete-course-select');

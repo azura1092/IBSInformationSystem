@@ -1690,3 +1690,135 @@ Stack trace:
 #6 C:\wamp64\www\System\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #7 C:\wamp64\www\System\server.php(21): require_once('C:\\wamp64\\www\\S...')
 #8 {main}  
+[2016-06-19 23:03:24] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp64\www\System\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp64\www\System\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp64\www\System\server.php(21): require_once('C:\\wamp64\\www\\S...')
+#8 {main}  
+[2016-06-19 23:03:27] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp64\www\System\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp64\www\System\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp64\www\System\server.php(21): require_once('C:\\wamp64\\www\\S...')
+#8 {main}  
+[2016-06-19 23:03:29] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp64\www\System\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp64\www\System\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp64\www\System\server.php(21): require_once('C:\\wamp64\\www\\S...')
+#8 {main}  
+[2016-06-19 23:03:31] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp64\www\System\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp64\www\System\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp64\www\System\server.php(21): require_once('C:\\wamp64\\www\\S...')
+#8 {main}  
+[2016-06-19 23:03:45] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp64\www\System\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp64\www\System\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp64\www\System\server.php(21): require_once('C:\\wamp64\\www\\S...')
+#8 {main}  
+[2016-06-19 23:15:14] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp64\www\System\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp64\www\System\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp64\www\System\server.php(21): require_once('C:\\wamp64\\www\\S...')
+#8 {main}  
+[2016-06-19 23:18:06] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp64\www\System\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp64\www\System\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp64\www\System\server.php(21): require_once('C:\\wamp64\\www\\S...')
+#8 {main}  
+[2016-06-19 23:18:10] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp64\www\System\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp64\www\System\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp64\www\System\server.php(21): require_once('C:\\wamp64\\www\\S...')
+#8 {main}  
+[2016-06-19 23:18:17] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp64\www\System\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp64\www\System\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp64\www\System\server.php(21): require_once('C:\\wamp64\\www\\S...')
+#8 {main}  
+[2016-06-19 23:34:11] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp64\www\System\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp64\www\System\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp64\www\System\server.php(21): require_once('C:\\wamp64\\www\\S...')
+#8 {main}  
+[2016-06-19 23:34:14] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp64\www\System\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp64\www\System\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp64\www\System\server.php(21): require_once('C:\\wamp64\\www\\S...')
+#8 {main}  
+[2016-06-19 23:34:17] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp64\www\System\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp64\www\System\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp64\www\System\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp64\www\System\server.php(21): require_once('C:\\wamp64\\www\\S...')
+#8 {main}  

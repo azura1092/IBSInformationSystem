@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\MainController;
 use Session;
 use Hybrid_Auth;
 use Hybrid_Endpoint;
@@ -13,7 +13,8 @@ use App\User;
 use App\Employees;
 use DB;
 
-class AuthController extends Controller {
+class AuthController extends MainController
+ {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -37,22 +38,21 @@ class AuthController extends Controller {
 	 */
 
     public function __construct()
-
     {
     }
    
 
     public function redirectToGoogle()
-
     {
 
-        try {
+        try 
+        {
     		return Socialite::driver('google')->redirect();
 		}
-		catch (GuzzleHttp\Exception\ClientException $e) {
+		catch (GuzzleHttp\Exception\ClientException $e)
+	    {
 		     dd($e->response);
 		}
-
     }
 
     public function handleGoogleCallback()
@@ -64,10 +64,10 @@ class AuthController extends Controller {
         Session::put('avatar', $user->getAvatar());
 
         return redirect('attempt_login');
-
     }
 
-	public function attempt(){
+	public function attempt()
+	{
 		if(Session::get('name') == null)	//if no input (manually entered /attempt_login) is placed, redirect to index
 			return redirect('');
 
@@ -80,7 +80,8 @@ class AuthController extends Controller {
 		$employee = Employees::where('emailAddress', '=', $email)->get();
 		$error = "";
 
-		if(count($employee) != 1){
+		if(count($employee) != 1)
+		{
 			$error = "".$email." account does not exist.";
 			Session::put('error', $error);
 			return redirect('/login');
@@ -90,46 +91,62 @@ class AuthController extends Controller {
         Session::put('userEmp', $employee[0]);
 		Session::put('employeeNum', $employee[0]['employeeNum']);
 
+		parent::log('LIN', 'Logged in.');
+
 		return redirect('home');
 	}
 
-	public function home(){
-		if(Session::has('type')){
+	public function home()
+	{
+		if(Session::has('type'))
+		{
 			$type = Session::get('type');
 		}
-		else{
+		else
+		{
 			return redirect('');
 		}
 
-		if($type == '2'){
+		if($type == '2')
+		{
 			return redirect('admin-home');
 		}
-		else if($type == '1'){
+		else if($type == '1')
+		{
 			return redirect('faculty-home');
 		}
-		else if($type == '0'){
+		else if($type == '0')
+		{
 			return redirect('staff-home');
 		}
 	}
 
-	public function logout(){
+	public function logout()
+	{
 
-		if(Session::has('type')){
+		if(Session::has('type'))
+		{
 			Session::forget('type');
 		}
-		if(Session::has('name')){
+		if(Session::has('name'))
+		{
 			Session::forget('name');
 		}
-		if(Session::has('email')){
+		if(Session::has('email'))
+		{
 			Session::forget('email');
 		}
-		if(Session::has('userEmp')){
+		if(Session::has('userEmp'))
+		{
 			Session::forget('userEmp');
 		}
-		if(Session::has('avatar')){
+		if(Session::has('avatar'))
+		{
 			Session::forget('avatar');
 		}
-		//session_destroy();
+
+		parent::log('LOUT', 'Logged out.');
+
 		return redirect('https://mail.google.com/mail/u/0/?logout&hl=e');
 	}
 

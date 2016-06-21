@@ -33,7 +33,7 @@
 
 
 <script src="<?php echo e(asset('/js/jquery-2.1.4.js')); ?>"></script>
-<script src="<?php echo e(asset('js/login.js')); ?>"></script> <!-- Gem jQuery -->
+<script src="<?php echo e(asset('js/login.js')); ?>"></script>
 
 </body>
 </html>
