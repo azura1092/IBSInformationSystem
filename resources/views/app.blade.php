@@ -19,7 +19,6 @@
 <body style="background-image: url('../img/bg2.jpg'); -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
 	@yield('content')
 
-
 <footer class="footer">
 	<div class="container">
   	<p>
@@ -30,7 +29,6 @@
   	</p>
 	</div>
 </footer>
-
 
 <script src="{{ asset('/js/jquery-2.1.4.js')}}"></script>
 <script src="{{ asset('js/login.js') }}"></script>

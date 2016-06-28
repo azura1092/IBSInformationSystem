@@ -19,7 +19,6 @@
 <body style="background-image: url('../img/bg2.jpg'); -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
 	<?php echo $__env->yieldContent('content'); ?>
 
-
 <footer class="footer">
 	<div class="container">
   	<p>
@@ -30,7 +29,6 @@
   	</p>
 	</div>
 </footer>
-
 
 <script src="<?php echo e(asset('/js/jquery-2.1.4.js')); ?>"></script>
 <script src="<?php echo e(asset('js/login.js')); ?>"></script>

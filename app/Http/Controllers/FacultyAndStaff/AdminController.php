@@ -1653,4 +1653,14 @@ class AdminController extends MainController
 		return redirect('login');
 	}
 
+	public function viewSystemLog()
+	{
+		$logs = Logs::orderBy('created_at', 'des')->get();
+		$ipaddress = Request::ip();
+
+		if(Session::get('type') == 2)
+			$editnotifs = EditRequest::all();
+
+		return view('facultyandstaff.admin.view-user-logs', compact('logs', 'editnotifs', 'ipaddress'));
+	}
 }

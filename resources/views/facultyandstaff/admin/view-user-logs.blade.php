@@ -1,4 +1,4 @@
-@extends('alumni')
+@extends('facultyandstaff.admin.dash-admin')
 
 @section('content')
 

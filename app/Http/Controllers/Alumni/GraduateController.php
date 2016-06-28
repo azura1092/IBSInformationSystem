@@ -15,7 +15,7 @@ use Session;
 use Request;
 use DB;
 
-class StaffController extends MainController
+class GraduateController extends MainController
 {
 	public function visualize()
 	{
@@ -151,7 +151,7 @@ class StaffController extends MainController
 			$graduates = Graduate::where('yeargrad', '=', $yeargrad)->paginate(10);
 			$status = false;
 			return view('graduate.view-all', compact('graduates', 'status', 'editnotifs'));		
-		}
+		} 
 		else if($type == "companyname")
 		{
 			$companyname = Input::get('companyname');
@@ -284,16 +284,5 @@ class StaffController extends MainController
 		}
 		
 		return view('graduate.upload-bulk-data', compact('message', 'status', 'editnotifs'));
-	}
-
-	public function viewSystemLog()
-	{
-		$logs = Logs::all();
-		$ipaddress = Request::ip();
-
-		if(Session::get('type') == 2)
-			$editnotifs = EditRequest::all();
-
-		return view('admin.view-user-logs', compact('logs', 'editnotifs', 'ipaddress'));
 	}
 }

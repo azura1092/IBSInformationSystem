@@ -1,4 +1,4 @@
-@extends('alumni')
+@extends('graduate.alumni')
 	<script type="text/javascript" src="js/loader.js"></script>
     <script type="text/javascript" src="js/jsapi.js"></script>
 	<script type="text/javascript">

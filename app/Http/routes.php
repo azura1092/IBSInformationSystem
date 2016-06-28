@@ -1,5 +1,5 @@
 <?php
-
+ 
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,14 +10,11 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+ 
 Route::get('', 'HomeController@index');
 Route::get('/', 'HomeController@index');
 
-// Authentication Routes
-
-
-
+// Authentication Route
 	Route::match(['GET', 'POST'], 'attempt_login', 'Auth\AuthController@attempt');
 
 	Route::get('home', 'Auth\AuthController@home');
@@ -25,7 +22,6 @@ Route::get('/', 'HomeController@index');
 	Route::get('welcome', function () {
 	    return view('home');
 	});
-
 
 	Route::get('auth/google', 'Auth\AuthController@redirectToGoogle');
 	Route::get('auth/google/callback', 'Auth\AuthController@handleGoogleCallback');
@@ -63,7 +59,6 @@ Route::get('/', 'HomeController@index');
 	Route::get('employee-upload-bulk-data', 'FacultyAndStaff\AdminController@uploadEmployeeBulkData');
 	Route::post('process-employee-upload-bulk-data', 'FacultyAndStaff\EmployeeCsvImportController@store');
 	//Route::post('process-employee-upload-bulk-data', 'FacultyAndStaff\AdminController@processUploadEmployeeBulkData');
-
 
 	//delete employee
 	Route::post('delete-employee', 'FacultyAndStaff\AdminController@deleteEmployee');
@@ -109,24 +104,24 @@ Route::get('/', 'HomeController@index');
 	Route::match(['GET', 'POST'], 'processDeclineEditRequest', 'FacultyAndStaff\AdminController@processDeclineEditRequest');
 
 //Alumni
-	Route::post('register-user', 'Alumni\StaffController@processRegister');
+	Route::post('register-user', 'Alumni\GraduateController@processRegister');
 
 	//add graduate
-	Route::get('add-graduate', 'Alumni\StaffController@addGraduate');
-	Route::post('processAddGraduate', 'Alumni\StaffController@processAddGraduate');
+	Route::get('add-graduate', 'Alumni\GraduateController@addGraduate');
+	Route::post('processAddGraduate', 'Alumni\GraduateController@processAddGraduate');
 
 	//search graduate
-	Route::match(['GET', 'POST'], 'search-graduate-{type}', 'Alumni\StaffController@searchGraduate');
+	Route::match(['GET', 'POST'], 'search-graduate-{type}', 'Alumni\GraduateController@searchGraduate');
 
 	//edit graduate
-	Route::match(['GET', 'POST'], 'edit-graduate', 'Alumni\StaffController@editGraduate');
-	Route::post('processEditGraduate', 'Alumni\StaffController@processEditGraduate');
+	Route::match(['GET', 'POST'], 'edit-graduate', 'Alumni\GraduateController@editGraduate');
+	Route::post('processEditGraduate', 'Alumni\GraduateController@processEditGraduate');
 
 	//delete graduate
-	Route::post('delete-graduate', 'Alumni\StaffController@deleteGraduate');
+	Route::post('delete-graduate', 'Alumni\GraduateController@deleteGraduate');
 
 	//view all records
-	Route::get('graph', 'Alumni\StaffController@visualize');
+	Route::get('graph', 'Alumni\GraduateController@visualize');
 
 //Faculty Routes
 	Route::get('faculty-home', 'FacultyAndStaff\FacultyController@index');
@@ -179,15 +174,14 @@ Route::get('/', 'HomeController@index');
 	Route::match(['GET', 'POST'], 'processDismissStaffNotif', 'FacultyAndStaff\StaffController@processDismissStaffNotif');
 
 	//visualize records
-	Route::get('graph', 'Alumni\StaffController@visualize');
+	Route::get('graph', 'Alumni\GraduateController@visualize');
 
-Route::get('view-user-logs', 'Alumni\StaffController@viewSystemLog');
+	Route::get('view-user-logs', 'FacultyAndStaff\AdminController@viewSystemLog');
 
-Route::get('graduate-upload-bulk-data', 'Alumni\StaffController@uploadGraduateBulkData');
-Route::post('process-graduate-upload-bulk-data', 'Alumni\GraduateCsvImportController@store');
-    
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+	Route::get('graduate-upload-bulk-data', 'Alumni\GraduateController@uploadGraduateBulkData');
+	Route::post('process-graduate-upload-bulk-data', 'Alumni\GraduateCsvImportController@store');
+	    
+	Route::controllers([
+		'auth' => 'Auth\AuthController',
+		'password' => 'Auth\PasswordController',
+	]);

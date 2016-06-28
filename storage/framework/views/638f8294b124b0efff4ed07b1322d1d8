@@ -1,7 +1,7 @@
 <?php $__env->startSection('content'); ?>
-		
-	<?php if($deleteStatus): ?>
 
+	<?php if($deleteStatus): ?>
+ 
 		<div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             Successfully deleted the record!
@@ -28,36 +28,36 @@
 	<?php endif; ?>
 
 	<div class="row">					
-		<!-- SEARCH -->
 		<div class="col-xs-12">
-			<div class="search-section">
-			<h4>Search</h4>
-			<hr></hr>
-			<div class="input-group">
-				<div class="input-group-btn">
-					<button type="button" class="btn btn-search dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by <span class="caret"></span></button>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Employee ID</a></li>
-						<li><a href="#">Last Name</a></li>
-						<li><a href="#">Position</a></li>
-						<li><a href="#">Division</a></li>
-					</ul>
-				</div>
-				<form class="form-horizontal" method="POST" action="<?php echo e(url('/search-employee-filter')); ?>">
-					<input type="hidden" name="search_param" value="all" id="search-param">
-					<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+			<div class="search-section"> 
+				<h4>Search</h4>
+				
+				<hr></hr>
+				
+				<div class="input-group">
+					<div class="input-group-btn">
+						<button type="button" class="btn btn-search dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by <span class="caret"></span></button>
+						<ul id="filterList" class="dropdown-menu" role="menu">
+							<li><a href="#">Employee ID</a></li>
+							<li><a href="#">Last Name</a></li>
+							<li><a href="#">Position</a></li>
+							<li><a href="#">Division</a></li>
+						</ul>
+					</div>
+					<form class="form-horizontal" method="POST" action="<?php echo e(url('/search-employee-filter')); ?>">
+						<input type="hidden" name="search_param" value="all" id="search-param">
+						<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 
-					<input type="text" id="input-getter" name="" placeholder="Select search filter" class="col-sm-11 control-label" style="text-align:left;"placeholder="Select search filter" >
-					<span class="input-group-btn">
-						<button class="btn btn-search" type="submit">
-							<span class="glyphicon glyphicon-search"></span>
-						</button>
-					</span>
-				</form>
-			</div>
+						<input type="text" id="input-getter" name="" placeholder="Select search filter" class="col-sm-11 control-label" style="text-align:left;">
+						<span class="input-group-btn">
+							<button class="btn btn-search" type="submit">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</span>
+					</form>
+				</div>
 			</div>
 		</div>
-		<!-- /search -->
 	</div>
 
 	<?php if(count($employees) > 0): ?>
@@ -95,8 +95,7 @@
 								</button>	
 								<button type="button" id="search-confirm-del-button" class="btn btn-danger" data-toggle="modal" data-id="<?php echo e($e->employeeNum); ?> <?php echo e($e->firstName); ?> <?php echo e($e->lastName); ?>" data-target="#confirm-delete-modal">
 									Delete
-								</button>		
-								
+								</button>
 							</div>
 						</form>
 					</div>
@@ -172,6 +171,53 @@
 			</div>
 		</div>
 	</div>
+
+	<script> 
+		//autocomplete script
+		$(document).ready(
+			function() {
+				var i = 0;
+				var input = Array();
+
+				//default autocomplete is based on last name
+				<?php foreach($employees as $e): ?>
+					input[i++] = "<?php echo e($e->lastName); ?>" + ", <?php echo e($e->firstName); ?>";
+				<?php endforeach; ?>
+
+				$("#input-getter").autocomplete({ source: input });
+
+				$('#filterList li').on(
+					"click", 
+					function() {
+						i = 0;
+
+						if($(this).text() === "Employee ID") {
+							<?php foreach($employees as $e): ?>
+								input[i++] = "<?php echo e($e->employeeNum); ?>";
+							<?php endforeach; ?>
+						}
+						else if($(this).text() === "Last Name") {
+							<?php foreach($employees as $e): ?>
+								input[i++] = "<?php echo e($e->lastName); ?>" + ", <?php echo e($e->firstName); ?>";
+							<?php endforeach; ?>
+						}
+						else if($(this).text() === "Position") {
+							<?php foreach($employees as $e): ?>
+								input[i++] = "<?php echo e($e->position); ?>";
+							<?php endforeach; ?>
+						}
+						else if($(this).text() === "Division") {
+							<?php foreach($employees as $e): ?>
+								input[i++] = "<?php echo e($e->division); ?>";
+							<?php endforeach; ?>
+						}
+
+						$("#input-getter").autocomplete({ source: input });
+					}
+				);
+			}
+		);
+	</script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('facultyandstaff.admin.dash-admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

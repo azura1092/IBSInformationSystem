@@ -1,9 +1,9 @@
-@extends('alumni')
+@extends('graduate.alumni')
 
 @section('content')
 
-	<div class="container-fluid">
-  		<div class="row">
+	<div class="container-fluid"> 
+  		<div class="row"> 
   			@if($status)
 				<div class="alert alert-success alert-dismissable">
 		            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -13,34 +13,39 @@
   			<legend><h2>Graduate Records</h2></legend>
 
   			<div class="row">					
-				<!-- SEARCH -->
 				<div class="col-xs-12">
-					<div class="search-section">
-					 	<form class="form-horizontal" method="POST" action="{{ url('/search-graduate-filter') }}">
-						    <div class="input-group">
-						      <div class="input-group-btn">
-						        <button type="button" class="btn btn-search dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						          Search Filter <span class="caret"></span>
-						        </button>
-						        <ul class="dropdown-menu" role="menu">
+					<div class="search-section"> 
+						<h4>Search</h4>
+						
+						<hr></hr>
+						
+						<div class="input-group">
+							<div class="input-group-btn">
+								<button type="button" class="btn btn-search dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by <span class="caret"></span></button>
+								<ul id="filterList" class="dropdown-menu" role="menu">
+									<li><a href="#">Last Name</a></li>
 									<li><a href="#">Major</a></li>
 									<li><a href="#">Master of Science Degree</a></li>
 									<li><a href="#">Year Graduated</a></li>
 									<li><a href="#">Current Company</a></li>
-									<li><a href="#">Last Name</a></li>
 								</ul>
-						      </div>
-						      <input type="hidden" name="search_param" value="all" id="search-param">
-							  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-						      <input type="text" id="input-getter" class="form-control" placeholder="Select search filter">
-						      <span class="input-group-btn">
-						        <button class="btn btn-search" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-						      </span>
-						    </div>
-						</form>
-  					</div>		
-				<!-- /search -->
+							</div>
+							<form class="form-horizontal" method="POST" action="{{ url('/search-employee-filter') }}">
+								<input type="hidden" name="search_param" value="all" id="search-param">
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+								<input type="text" id="input-getter" name="" placeholder="Select search filter" class="col-sm-11 control-label" style="text-align:left;">
+								<span class="input-group-btn">
+									<button class="btn btn-search" type="submit">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+								</span>
+							</form>
+						</div>
+					</div>
 				</div>
+			</div>
+
   			@if(count($graduates)<1)
   				<div class="col-md-offset-3 col-md-6 col-md-offset-3">	
 						<div class="row">
@@ -183,5 +188,57 @@
 		</div>
 	</div>
 	</div>
+
+	<script> 
+		//autocomplete script
+		$(document).ready(
+			function() {
+				var i = 0;
+				var input = Array();
+
+				//default autocomplete is based on last name
+				@foreach ($graduates as $e)
+					input[i++] = "{{$e->lname}}" + ", {{$e->fname}}";
+				@endforeach
+
+				$("#input-getter").autocomplete({ source: input });
+
+				$('#filterList li').on(
+					"click", 
+					function() {
+						i = 0;
+
+						if($(this).text() === "Major") {
+							@foreach ($graduates as $e)
+								input[i++] = "{{$e->major}}";
+							@endforeach
+						}
+						else if($(this).text() === "Last Name") {
+							@foreach ($graduates as $e)
+								input[i++] = "{{$e->lname}}" + ", {{$e->fname}}";
+							@endforeach
+						}
+						else if($(this).text() === "Master of Science Degree") {
+							@foreach ($graduates as $e)
+								input[i++] = "{{$e->mscdegree}}";
+							@endforeach
+						}
+						else if($(this).text() === "Year Graduated") {
+							@foreach ($graduates as $e)
+								input[i++] = "{{$e->yeargrad}}";
+							@endforeach
+						}
+						else if($(this).text() === "Current Company") {
+							@foreach ($graduates as $e)
+								input[i++] = "{{$e->companyname}}";
+							@endforeach
+						}
+
+						$("#input-getter").autocomplete({ source: input });
+					}
+				);
+			}
+		);
+	</script>
 
 @endsection

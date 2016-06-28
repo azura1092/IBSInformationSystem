@@ -1,4 +1,4 @@
-@extends('alumni')
+@extends('graduate.alumni')
 
 @section('content')
 

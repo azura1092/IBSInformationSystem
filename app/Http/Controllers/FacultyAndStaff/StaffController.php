@@ -83,7 +83,7 @@ class StaffController extends MainController
 					Session::put('editEmployeeID', $enum);
 				}
 				else
-				{
+				{ 
 					$employee = Employee::where('employeeNum', '=', Session::get('editEmployeeID'))->get();
 					$status = Session::get('editStatus');
 
