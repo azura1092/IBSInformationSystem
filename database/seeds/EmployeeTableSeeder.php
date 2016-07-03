@@ -223,6 +223,12 @@ class EmployeeTableSeeder extends Seeder {
 			'employeeNum'=>'201211111', 
 			'emailAddress'=>'crissaveah23@gmail.com'],
 
+			['type' => '2',
+			'firstName'=>'Jun',
+			'lastName'=>'Mitra',
+			'employeeNum'=>'200914953', 
+			'emailAddress'=>'esmitra@up.edu.ph'],
+
 			['type' => '1',
 			'firstName'=>'Crissa',
 			'lastName'=>'Pilien',

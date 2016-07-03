@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-	<meta name="csrf-token" content="{{ csrf_token() }}" />
+	<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
 
  	<link rel="icon" href="img/favicon.ico" />
 	<link rel="stylesheet" href="css/reset.css">
@@ -41,12 +41,13 @@
 				<li><a href="#0">Link</a></li> -->
 				<li class="has-children account">
 					<a href="#0">
-						<img src="{{Session::get('avatar')}}" alt="avatar">
-						{{ Session::get('name') }}
+						<img src="<?php echo e(Session::get('avatar')); ?>" alt="avatar">
+						<?php echo e(Session::get('name')); ?>
+
 					</a>
 
 					<ul>
-						<li><a href="admin-view-profile-{{ Session::get('userEmp')['employeeNum'] }}">My Profile</a></li>
+						<li><a href="admin-view-profile-<?php echo e(Session::get('userEmp')['employeeNum']); ?>">My Profile</a></li>
 						<li><a href="logout">Logout</a></li>
 					</ul>
 				</li>
@@ -64,11 +65,12 @@
 				<!-- NOTIFICATIONS -->
 				<li class="notifications">
 					<a href="notifications">Notifications
-						@if(count($editnotifs) > 0)
+						<?php if(count($editnotifs) > 0): ?>
 							<span class="count">
-								{{ count($editnotifs) }}
+								<?php echo e(count($editnotifs)); ?>
+
 							</span>
-						@endif
+						<?php endif; ?>
 					</a>
 				</li>
 				<!-- FACULTY -->
@@ -100,7 +102,7 @@
 					<a href="#0">Courses</a>
 					
 					<ul>
-						<li><a href="view-course-select">View Course Offering</a></li>
+						<li><a href="view-course-select">View All or Search</a></li>
 						<li><a href="add-course">Add Course</a></li>
 						<li><a href="edit-course-select">Edit Course</a></li>
 						<li><a href="delete-course-select">Delete Course</a></li>
@@ -114,7 +116,7 @@
 			</ul>
 
 			<ul>
-				<li class="action-btn" disabled><a href="#0">{{ Session::get('email') }}</a></li>
+				<li class="action-btn" disabled><a href="#0"><?php echo e(Session::get('email')); ?></a></li>
 			</ul>
 
 		</nav>
@@ -123,7 +125,7 @@
 			<!-- <h1>IBS Information System</h1> -->
 			<div class="container-fluid">
 
-				@yield('content')
+				<?php echo $__env->yieldContent('content'); ?>
 
 			</div>
 				
@@ -141,22 +143,22 @@
 
 			if(concept == "Major"){
 				$('.search-section #input-getter').attr("name", "major");
-				$('.search-section form').attr("action", "{{ url('/search-graduate-major') }}");
+				$('.search-section form').attr("action", "<?php echo e(url('/search-graduate-major')); ?>");
 			}
 			else if(concept == "Master of Science Degree"){
 				$('.search-section #input-getter').attr("name", "mscdegere");
-				$('.search-section form').attr("action", "{{ url('/search-graduate-mscdegree') }}");
+				$('.search-section form').attr("action", "<?php echo e(url('/search-graduate-mscdegree')); ?>");
 			}
 			else if(concept == "Year Graduated"){
 				$('.search-section #input-getter').attr("name", "yeargrad");
-				$('.search-section form').attr("action", "{{ url('/search-graduate-yeargrad') }}");
+				$('.search-section form').attr("action", "<?php echo e(url('/search-graduate-yeargrad')); ?>");
 			}
 			else if(concept == "Current Company"){
 				$('.search-section #input-getter').attr("name", "companyname");
-				$('.search-section form').attr("action", "{{ url('/search-graduate-companyname') }}");
+				$('.search-section form').attr("action", "<?php echo e(url('/search-graduate-companyname')); ?>");
 			}else if(concept == "Last Name"){
 				$('.search-section #input-getter').attr("name", "lname");
-				$('.search-section form').attr("action", "{{ url('/search-graduate-lname') }}");
+				$('.search-section form').attr("action", "<?php echo e(url('/search-graduate-lname')); ?>");
 			}
 			
 		});
@@ -172,7 +174,7 @@
 			}
 
 			else if(buttonID == 'search-delete-button'){
-				$('.search-result-btns').attr("action", "{{ url('/delete-graduate') }}");
+				$('.search-result-btns').attr("action", "<?php echo e(url('/delete-graduate')); ?>");
 				
 			}
 		});
@@ -189,19 +191,19 @@
 
 			if(concept == "Last Name"){
 				$('.search-section #input-getter').attr("name", "lastName");
-				$('.search-section form').attr("action", "{{ url('/search-employee-lastname') }}");
+				$('.search-section form').attr("action", "<?php echo e(url('/search-employee-lastname')); ?>");
 			}
 			else if(concept == "Employee ID"){
 				$('.search-section #input-getter').attr("name", "employeeNum");
-				$('.search-section form').attr("action", "{{ url('/search-employee-id') }}");
+				$('.search-section form').attr("action", "<?php echo e(url('/search-employee-id')); ?>");
 			}
 			else if(concept == "Position"){
 				$('.search-section #input-getter').attr("name", "position");
-				$('.search-section form').attr("action", "{{ url('/search-employee-position') }}");
+				$('.search-section form').attr("action", "<?php echo e(url('/search-employee-position')); ?>");
 			}
 			else if(concept == "Division"){
 				$('.search-section #input-getter').attr("name", "division");
-				$('.search-section form').attr("action", "{{ url('/search-employee-division') }}");
+				$('.search-section form').attr("action", "<?php echo e(url('/search-employee-division')); ?>");
 			}
 			
 		});
@@ -210,11 +212,11 @@
 			var buttonID = $(this).attr('id');
 
 			if(buttonID == 'search-update-button'){
-				$('.search-result-btns').attr("action", "{{ url('/edit-employee') }}");
+				$('.search-result-btns').attr("action", "<?php echo e(url('/edit-employee')); ?>");
 			}
 
 			else if(buttonID == 'search-upload-record-button'){
-				$('.search-result-btns').attr("action", "{{ url('/upload-record') }}");
+				$('.search-result-btns').attr("action", "<?php echo e(url('/upload-record')); ?>");
 			}
 
 			else if(buttonID == 'search-confirm-del-button'){
@@ -225,12 +227,12 @@
 			}
 
 			else if(buttonID == 'search-delete-button'){
-				$('.search-result-btns').attr("action", "{{ url('/delete-employee') }}");
+				$('.search-result-btns').attr("action", "<?php echo e(url('/delete-employee')); ?>");
 				
 			}
 
 			else if(buttonID == 'search-archive-button'){
-				$('.search-result-btns').attr("action", "{{ url('/archive-employee') }}");
+				$('.search-result-btns').attr("action", "<?php echo e(url('/archive-employee')); ?>");
 			}
 
 			else if(buttonID == 'search-confirm-archive-button'){
@@ -241,7 +243,7 @@
 			}
 
 			else if(buttonID == 'retrieve-archive-button'){
-				$('.search-result-btns').attr("action", "{{ url('/retrieve-archive') }}");
+				$('.search-result-btns').attr("action", "<?php echo e(url('/retrieve-archive')); ?>");
 			}
 
 			else if(buttonID == 'confirm-retrieve-button'){
