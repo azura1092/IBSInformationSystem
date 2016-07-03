@@ -28,12 +28,13 @@
 	<script src="js/dashboard.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
   	
-	<title>IBS-IS</title>
+	<title>IBS-IS | Home</title>
 </head>
 <body>
 	<header class="cd-main-header">
-		<a href="admin-home" class="cd-logo"><img src="img/logo.png" alt="Logo"></a>
-		<a href="admin-home" class="cd-nav-trigger">Menu<span></span></a> <!-- mobile -->
+		<a href="#0" class="cd-logo"><img src="<?php echo e(asset('/img/logo.png')); ?>" alt="Logo"></a>
+
+		<a href="#0" class="cd-nav-trigger">Menu<span></span></a> <!-- mobile -->
 
 		<nav class="cd-nav">
 			<ul class="cd-top-nav">
@@ -47,7 +48,6 @@
 					</a>
 
 					<ul>
-						<li><a href="admin-view-profile-<?php echo e(Session::get('userEmp')['employeeNum']); ?>">My Profile</a></li>
 						<li><a href="logout">Logout</a></li>
 					</ul>
 				</li>
@@ -78,7 +78,7 @@
 					<a href="#">Employee</a>
 					
 					<ul>
-						<li><a href="search-employee-filter">View All or Search</a></li> 
+						<li><a href="search-employee-filter">View All or Search</a></li>
 						<li><a href="add-faculty-employee">Add Faculty Record</a></li>
 						<li><a href="add-staff-employee">Add Staff Record</a></li>
 						<li><a href="generate-report">Generate Report</a></li>
@@ -89,7 +89,6 @@
 				<!-- ALUMNI -->
 				<li class="has-children">
 					<a href="#0">Graduate</a>
-
 					<ul>
 						<li><a href="search-graduate-filter">View All or Search</a></li>
 						<li><a href="add-graduate">Add a Record</a></li>
@@ -102,11 +101,10 @@
 					<a href="#0">Courses</a>
 					
 					<ul>
-						<li><a href="view-course-select">View Course Offering</a></li>
+						<li><a href="view-course-select">View All or Search</a></li>
 						<li><a href="add-course">Add Course</a></li>
-						<li><a href="edit-course-select">Update Course Details</a></li>
-
-						<!-- <li><a href="delete-course-select">Delete Course</a></li> -->
+						<li><a href="edit-course-select">Edit Course</a></li>
+						<li><a href="delete-course-select">Delete Course</a></li>
 					</ul>
 				</li>
 				<!-- USER LOGS -->
@@ -124,12 +122,9 @@
 
 		<div class="content-wrapper">
 			<!-- <h1>IBS Information System</h1> -->
-			<div class="container-fluid">
-
+			<!--<div class="container-fluid">-->
 				<?php echo $__env->yieldContent('content'); ?>
-
-			</div>
-				
+			<!--</div>-->
 
 		</div> <!-- .content-wrapper -->
 	</main> <!-- .cd-main-content -->
@@ -179,94 +174,28 @@
 				
 			}
 		});
-	});
-</script>
-
-<script>
-	$(document).ready(function(e){
-		$('.search-section .dropdown-menu').find('a').click(function(e){
-			e.preventDefault();
-			var concept = $(this).text();
-			$('.search-section #input-getter').attr("placeholder", "Search by " + concept);
-
-
-			if(concept == "Last Name"){
-				$('.search-section #input-getter').attr("name", "lastName");
-				$('.search-section form').attr("action", "<?php echo e(url('/search-employee-lastname')); ?>");
-			}
-			else if(concept == "Employee ID"){
-				$('.search-section #input-getter').attr("name", "employeeNum");
-				$('.search-section form').attr("action", "<?php echo e(url('/search-employee-id')); ?>");
-			}
-			else if(concept == "Position"){
-				$('.search-section #input-getter').attr("name", "position");
-				$('.search-section form').attr("action", "<?php echo e(url('/search-employee-position')); ?>");
-			}
-			else if(concept == "Division"){
-				$('.search-section #input-getter').attr("name", "division");
-				$('.search-section form').attr("action", "<?php echo e(url('/search-employee-division')); ?>");
-			}
-			
+			$(document).on('change', '.btn-file :file', function() {
+		  var input = $(this),
+		      numFiles = input.get(0).files ? input.get(0).files.length : 1,
+		      label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+		  input.trigger('fileselect', [numFiles, label]);
 		});
 
-		$('.btn').click(function(){
-			var buttonID = $(this).attr('id');
-
-			if(buttonID == 'search-update-button'){
-				$('.search-result-btns').attr("action", "<?php echo e(url('/edit-employee')); ?>");
-			}
-
-			else if(buttonID == 'search-upload-record-button'){
-				$('.search-result-btns').attr("action", "<?php echo e(url('/upload-record')); ?>");
-			}
-
-			else if(buttonID == 'search-confirm-del-button'){
-				var emp = $(this).data('id').split(" ");				
-
-				$('.getter').val(emp[0]);
-				$('.modal-body').html("Are you sure you want to delete the record of <b>" + emp[1] + " " + emp[2] + "</b>?");
-			}
-
-			else if(buttonID == 'search-delete-button'){
-				$('.search-result-btns').attr("action", "<?php echo e(url('/delete-employee')); ?>");
-				
-			}
-
-			else if(buttonID == 'search-archive-button'){
-				$('.search-result-btns').attr("action", "<?php echo e(url('/archive-employee')); ?>");
-			}
-
-			else if(buttonID == 'search-confirm-archive-button'){
-				var emp = $(this).data('id').split(" ");				
-
-				$('.getter').val(emp[0]);
-				$('.modal-body').html("Are you sure you want to archive the record of <b>" + emp[1] + " " + emp[2] + "</b>?");
-			}
-
-			else if(buttonID == 'retrieve-archive-button'){
-				$('.search-result-btns').attr("action", "<?php echo e(url('/retrieve-archive')); ?>");
-			}
-
-			else if(buttonID == 'confirm-retrieve-button'){
-				var emp = $(this).data('id').split(" ");				
-
-				$('.getter').val(emp[0]);
-				$('.modal-body').html("Are you sure you want to retrieve the record of <b>" + emp[1] + " " + emp[2] + "</b>?");
-			}
-
-			else if(buttonID == 'delete-course-btn'){
-				$('.modal-body').html("Are you sure you want to delete " + $('#course_num').val() + "?");
-			}
-		});
+		$(document).ready( function() {
+		    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+		        
+		        var input = $(this).parents('.input-group').find(':text'),
+		            log = numFiles > 1 ? numFiles + ' files selected' : label;
+		        
+        if( input.length ) {
+            input.val(log);
+        } else {
+            if( log ) alert(log);
+        }
+        
+    });
 	});
-</script>
-
-
-<script type="text/javascript">
-	function viewProfile(eNum){
-		console.log(eNum);
-		window.open("/admin-view-profile-" + eNum);
-	}
+	});
 </script>
 
 </body>

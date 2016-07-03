@@ -102,8 +102,9 @@
 					<ul>
 						<li><a href="view-course-select">View Course Offering</a></li>
 						<li><a href="add-course">Add Course</a></li>
-						<li><a href="edit-course-select">Edit Course</a></li>
-						<li><a href="delete-course-select">Delete Course</a></li>
+						<li><a href="edit-course-select">Update Course Details</a></li>
+
+						<!-- <li><a href="delete-course-select">Delete Course</a></li> -->
 					</ul>
 				</li>
 				<!-- USER LOGS -->
@@ -252,7 +253,7 @@
 			}
 
 			else if(buttonID == 'delete-course-btn'){
-				$('.modal-body').html("Are you sure you want to delete " + $('#course-getter').val() + "?");
+				$('.modal-body').html("Are you sure you want to delete " + $('#course_num').val() + "?");
 			}
 		});
 	});

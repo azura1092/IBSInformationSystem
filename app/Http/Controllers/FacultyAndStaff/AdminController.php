@@ -1402,29 +1402,32 @@ class AdminController extends MainController
 				$editnotifs = EditRequest::all();
 				$courses = Course::all();
 				$s = 0;
-				$status = false;
+				$status = 0;
+				//status 0 = default 1 = edit 2 = delete
 
 				if($key == "selected")
 				{
+
 					Session::forget('editStatus');
 					Session::forget('editCourseNum');
 
 					$courseNum = Input::get('courseNum');
 					$courseSelected = Course::where('courseNum', '=', $courseNum)->get();
-					$status = false;
+					$status = 0;
 					$s = 1;
 
-					Session::put('editStatus', false);
+					Session::put('editStatus', 0);
 					Session::put('editCourseNum', $courseNum);
 
-					return view('facultyandstaff.admin.edit-course', compact('s', 'courses', 'courseSelected', 'status', 'editnotifs'));		
+					return view('facultyandstaff.admin.edit-course', compact('s', 'courses', 'courseSelected','status', 'editnotifs'));		
 				}
+
 				else
 				{
 					$courseSelected = Course::where('courseNum', '=', Session::get('editCourseNum'))->get();
 					$status = Session::get('editStatus');
 
-					Session::put('editStatus', false);
+					Session::put('editStatus', 0);
 				}
 
 				return view('facultyandstaff.admin.edit-course', compact('s', 'courses', 'status', 'editnotifs'));
@@ -1443,10 +1446,31 @@ class AdminController extends MainController
 		{
 			if(Session::get('type') == 2)
 			{
+
+				if(Input::get('delete')) {
+            		$editnotifs = EditRequest::all();
+					$courseNum = Input::get('courseNum');
+				
+					if(count(Course::where('courseNum', '=', $courseNum)->get()) > 0)
+					{
+						Course::where('courseNum', '=', $courseNum)->delete();	
+						Session::put('deleteStatus', true);
+						Session::put('deleteCouseNum', $courseNum);
+						$status = 2;
+						$courses = Course::all();	
+						$s = 0;	
+
+						parent::log('DELC', 'Deleted course.');
+						return view('facultyandstaff.admin.edit-course', compact('s', 'courses', 'status', 'editnotifs'));
+					//return redirect('delete-course-select');
+					}
+        		}
+
+
 				$courseNum = Input::get('courseNum');
 				Course::where('courseNum', '=', $courseNum)->update(array("courseNum"=>Input::get('courseNum'), "courseTitle"=>Input::get('courseTitle'), "classification"=>Input::get('classification'), "numOfUnits"=>Input::get('numOfUnits'), "prerequisite"=>Input::get('prerequisite'), "semOffered"=>Input::get('semOffered')));
 
-				Session::put('editStatus', true);
+				Session::put('editStatus', 1);
 				Session::put('editCouseNum', $courseNum);
 
 				parent::log('EDITC', 'Edited course.');
