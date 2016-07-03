@@ -147,7 +147,7 @@ class AuthController extends MainController
 
 		parent::log('LOUT', 'Logged out.');
 
-		return redirect('https://mail.google.com/mail/u/0/?logout&hl=e');
+		return redirect('home');
 	}
 
 }
