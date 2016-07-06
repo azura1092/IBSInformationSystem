@@ -20,6 +20,7 @@ use File;
 use Input;
 use Log;
 use DB;
+use Validator;
 
 use App\PDF;
 
@@ -130,6 +131,33 @@ class AdminController extends MainController
 			if(Session::get('type') == 2)
 			{
 				global $temp;
+
+				$inputs = Input::all();
+				$rules = array(
+					'employeeNumber' => 'required|digits:10|unique:employees,employeeNum',
+					'firstName' => 'required|min:2',
+					'middleName' => 'required|min:2',
+					'lastName' => 'required|min:2',
+					'sex' => 'required',
+					'birthdate' => 'required|date',
+					'position' => 'required|exists:faculty_positions,positionTitle',
+					'division' => 'required|exists:divisions,division',
+					'contactNumber' => 'required|between:1,15',
+					'emailAddress' => 'email|required|min:6|unique:employees',
+					'currentAddress' => 'required|min:5',
+					'permanentAddress' => 'required|min:5',
+					'degree' => 'required|exists:degrees,degree',
+					'specialization' => 'required|exists:specializations,specialization',
+					'yearGraduated' => 'required|digits:4',
+					'school' => 'required|min:4'
+				);
+				// test input against the set rules
+				$validation = Validator::make($inputs, $rules);
+
+				if($validation->fails()){
+					return redirect('add-faculty-employee')->withInput()->withErrors($validation->errors());
+				}
+
 				$type = 1;
 				$employeeNumber = Input::get('employeeNumber');
 				$firstName = Input::get('firstName');
@@ -181,6 +209,30 @@ class AdminController extends MainController
 			if(Session::get('type') == 2)
 			{
 				global $temp;
+
+				// data validation for add staff employee module
+				$inputs = Input::all();
+				$rules = array(
+					'employeeNumber' => 'required|digits:10|unique:employees,employeeNum',
+					'firstName' => 'required|min:2',
+					'middleName' => 'required|min:2',
+					'lastName' => 'required|min:2',
+					'sex' => 'required',
+					'birthdate' => 'required|date',
+					'position' => 'required|exists:staff_positions,positionTitle',
+					'contactNumber' => 'required|digits:11',
+					'emailAddress' => 'email|required|min:6|unique:employees',
+					'currentAddress' => 'required|min:5',
+					'permanentAddress' => 'required|min:5'
+
+				);
+				// test input against the set rules
+				$validation = Validator::make($inputs, $rules);
+
+				if($validation->fails()){
+					return redirect('add-staff-employee')->withInput()->withErrors($validation->errors());
+				}
+
 				$type = 0;
 				$employeeNumber = Input::get('employeeNumber');
 				$firstName = Input::get('firstName');
@@ -1468,6 +1520,25 @@ class AdminController extends MainController
 					}
         		}
 
+        		$inputs = Input::all();
+				$rules = array(
+					'courseNum' => 'required|min:3',
+					'courseTitle' => 'required|min:2',
+					'classification' => 'required',
+					'numOfUnits' => 'required|min:1',
+					'semOffered' => array(
+									 'required',
+									 'max:6',
+									 'regex:/(1|2|S)(,2)?(,S)?/'
+									 )
+
+				);
+				// test input against the set rules
+				$validation = Validator::make($inputs, $rules);
+
+				if($validation->fails()){
+					return redirect('edit-course-select')->withInput()->withErrors($validation->errors());
+				}
 
 				$courseNum = Input::get('courseNum');
 				Course::where('courseNum', '=', $courseNum)->update(array("courseNum"=>Input::get('courseNum'), "courseTitle"=>Input::get('courseTitle'), "classification"=>Input::get('classification'), "numOfUnits"=>Input::get('numOfUnits'), "prerequisite"=>Input::get('prerequisite'), "semOffered"=>Input::get('semOffered')));
