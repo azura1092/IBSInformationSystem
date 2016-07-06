@@ -14,15 +14,15 @@ class CreateCourseOfferingTable extends Migration {
 	{
 		Schema::create('course_offering', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->engine = 'InnoDB';
 			$table->string('courseNum');
-			$table->foreign('courseNum')->references('courseNum')->on('courses')->onDelete('cascade');
 			$table->string('section',10);
 			//$table->integer('units');
 			$table->string('lecture',50);
 			$table->string('lecturer',50);
 			$table->string('lab',50);
 			$table->string('labinstruct',50);
+			$table->foreign('courseNum')->references('courseNum')->on('courses')->onDelete('cascade')->onUpdate('cascade');
 		});
 	}
 
