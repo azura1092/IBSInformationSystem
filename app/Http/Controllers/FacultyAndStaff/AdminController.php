@@ -1285,8 +1285,6 @@ class AdminController extends MainController
 		    	$courseOffering = CourseOffering::all();
 		    	$s = 0;
 
-		    	dd($courseOffering);
-
 				if($key == "selected")
 				{
 					$courseNum = Input::get('courseNum');
@@ -1294,7 +1292,7 @@ class AdminController extends MainController
 					$s = 1;		
 				}
 
-				return view('facultyandstaff.admin.view-course', compact('s', 'courses', 'courseSelected', 'editnotifs'));
+				return view('facultyandstaff.admin.view-course', compact('s', 'courses', 'courseSelected', 'editnotifs', 'courseOffering'));
 			}
 		}
 

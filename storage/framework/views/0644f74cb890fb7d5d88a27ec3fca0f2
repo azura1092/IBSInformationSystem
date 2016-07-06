@@ -62,14 +62,18 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr style="text-align: center;">
-										<td>B-1L</td>
-										<td>3</td>
-										<td>9-10 WF IBSLH Main</td>
-										<td>TBA</td>
-										<td>7-10 Mon BS C-116</td>
-										<td>TBA</td>
-									</tr>
+									<?php foreach($courseOffering as $row): ?>
+										<?php if($courseSelected[0]->courseNum == $row->courseNum): ?>
+            								<tr style=" text-align: center;">
+                								<td><?php echo e($row->section); ?></td>
+                								<td><?php echo e($courseSelected[0]->numOfUnits); ?></td>
+                								<td><?php echo e($row->lecture); ?></td>
+                								<td><?php echo e($row->lecturer); ?></td>
+                								<td><?php echo e($row->lab); ?></td>
+                								<td><?php echo e($row->labinstruct); ?></td>
+            								</tr>
+            							<?php endif; ?>
+       	 							<?php endforeach; ?>
 								</tbody>
 							</table>
 						</div>

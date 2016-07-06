@@ -63,14 +63,18 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr style="text-align: center;">
-										<td>B-1L</td>
-										<td>3</td>
-										<td>9-10 WF IBSLH Main</td>
-										<td>TBA</td>
-										<td>7-10 Mon BS C-116</td>
-										<td>TBA</td>
-									</tr>
+									@foreach($courseOffering as $row)
+										@if($courseSelected[0]->courseNum == $row->courseNum)
+            								<tr style=" text-align: center;">
+                								<td>{{$row->section}}</td>
+                								<td>{{$courseSelected[0]->numOfUnits}}</td>
+                								<td>{{$row->lecture}}</td>
+                								<td>{{$row->lecturer}}</td>
+                								<td>{{$row->lab}}</td>
+                								<td>{{$row->labinstruct}}</td>
+            								</tr>
+            							@endif
+       	 							@endforeach
 								</tbody>
 							</table>
 						</div>
