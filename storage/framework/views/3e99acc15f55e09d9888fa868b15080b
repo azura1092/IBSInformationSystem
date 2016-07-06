@@ -106,7 +106,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Prerequisite</label>
 					<div class="col-sm-7">
-						<input class="form-control" name="prerequisite" id="prerequisite" type="text" value="<?php echo e($courseSelected[0]->prerequisite); ?>" required>
+						<input class="form-control" name="prerequisite" id="prerequisite" type="text" value="<?php echo e($courseSelected[0]->prerequisite); ?>" >
 					</div>
 				</div>
 

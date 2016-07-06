@@ -37,6 +37,7 @@ use App\ApprovedRequest;
 use App\DeclinedRequest;
 use App\EditNotice;
 use App\Logs;
+use App\CourseOffering;
 
 class AdminController extends MainController 
 {
@@ -1281,7 +1282,10 @@ class AdminController extends MainController
 			{
 				$editnotifs = EditRequest::all();
 		    	$courses = Course::all();
+		    	$courseOffering = CourseOffering::all();
 		    	$s = 0;
+
+		    	dd($courseOffering);
 
 				if($key == "selected")
 				{
