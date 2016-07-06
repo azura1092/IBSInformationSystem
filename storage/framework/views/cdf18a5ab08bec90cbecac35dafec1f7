@@ -1,15 +1,13 @@
-@extends('facultyandstaff.admin.dash-admin')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     
-    @if($status == 2)
+    <?php if($status == 2): ?>
 
 		<div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             Successfully added the record!
     	</div>
 
-	@endif
+	<?php endif; ?>
 
 	<div class="row">				
 		<div class="col-xs-12">
@@ -21,44 +19,44 @@
 				<div class="update-section">
 					<div class="row">
 						<div class="col-xs-12">
-							<form class="form-horizontal" method="POST" action="{{ url('/processAddEmployee') }}">
-								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<form class="form-horizontal" method="POST" action="<?php echo e(url('/processAddEmployee')); ?>">
+								<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Employee Number</label>
 									<div class="col-sm-7">
-										<input class="form-control" name="employeeNumber" id="employeeNumber" type="text" value="{{old('employeeNumber')}}" required>
-										@if($errors->has('employeeNumber'))
+										<input class="form-control" name="employeeNumber" id="employeeNumber" type="text" value="<?php echo e(old('employeeNumber')); ?>" required>
+										<?php if($errors->has('employeeNumber')): ?>
 											<li class="list-group-item list-group-item-danger">Please type a valid employee number</li>
-										@endif
+										<?php endif; ?>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">First Name</label>
 									<div class="col-sm-7">
-										<input class="form-control" name="firstName" id="firstName" type="text" value="{{old('firstName')}}" required>
-										@if($errors->has('firstName'))
+										<input class="form-control" name="firstName" id="firstName" type="text" value="<?php echo e(old('firstName')); ?>" required>
+										<?php if($errors->has('firstName')): ?>
 											<li class="list-group-item list-group-item-danger">Please check your input.</li>
-										@endif
+										<?php endif; ?>
 									</div>
 								</div>	
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Middle Name</label>
 									<div class="col-sm-7">
-										<input class="form-control" name="middleName" id="middleName" type="text" value="{{old('middleName')}}" required>
-										@if($errors->has('middleName'))
+										<input class="form-control" name="middleName" id="middleName" type="text" value="<?php echo e(old('middleName')); ?>" required>
+										<?php if($errors->has('middleName')): ?>
 											<li class="list-group-item list-group-item-danger">Please check your input.</li>
-										@endif
+										<?php endif; ?>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Last Name</label>
 									<div class="col-sm-7">
-										<input class="form-control" name="lastName" id="lastName" type="text" value="{{old('lastName')}}" required>
-										@if($errors->has('lastName'))
+										<input class="form-control" name="lastName" id="lastName" type="text" value="<?php echo e(old('lastName')); ?>" required>
+										<?php if($errors->has('lastName')): ?>
 											<li class="list-group-item list-group-item-danger">Please check your input.</li>
-										@endif
+										<?php endif; ?>
 									</div>
 								</div>
 
@@ -67,13 +65,13 @@
 									<div class="col-sm-7">
 										<select class="form-control" name="position" id="position" required>
 											<option selected disabled></option>
-											@foreach($positions as $p)
-												<option value="{{ $p->positionTitle }}" @if (Input::old('position') == $p->positionTitle) selected="selected" @endif>{{ $p->positionTitle }}</option>
-											@endforeach
+											<?php foreach($positions as $p): ?>
+												<option value="<?php echo e($p->positionTitle); ?>" <?php if(Input::old('position') == $p->positionTitle): ?> selected="selected" <?php endif; ?>><?php echo e($p->positionTitle); ?></option>
+											<?php endforeach; ?>
 										</select>	
-										@if($errors->has('position'))
+										<?php if($errors->has('position')): ?>
 											<li class="list-group-item list-group-item-danger">Please check your input.</li>
-										@endif	
+										<?php endif; ?>	
 									</div>
 								</div>
 
@@ -82,13 +80,13 @@
 									<div class="col-sm-7">
 										<select class="form-control" name="division" id="division" required>
 											<option selected disabled></option>
-											@foreach($divisions as $d)
-												<option value="{{ $d->division }}" @if (Input::old('division') == $d->division) selected="selected" @endif>{{ $d->division }}</option>
-											@endforeach
+											<?php foreach($divisions as $d): ?>
+												<option value="<?php echo e($d->division); ?>" <?php if(Input::old('division') == $d->division): ?> selected="selected" <?php endif; ?>><?php echo e($d->division); ?></option>
+											<?php endforeach; ?>
 										</select>
-										@if($errors->has('division'))
+										<?php if($errors->has('division')): ?>
 											<li class="list-group-item list-group-item-danger">Please check your input.</li>
-										@endif
+										<?php endif; ?>
 									</div>
 								</div>
 
@@ -97,62 +95,62 @@
 									<div class="col-sm-7">
 										<select class="form-control" name="sex" id="sex" required>
 											<option selected disabled></option>
-											<option name="Female" value="Female" @if (Input::old('sex') == 'Female') selected="selected" @endif>Female</option>
-											<option name="Male" value="Male" @if (Input::old('sex') == 'Male') selected="selected" @endif>Male</option>
+											<option name="Female" value="Female" <?php if(Input::old('sex') == 'Female'): ?> selected="selected" <?php endif; ?>>Female</option>
+											<option name="Male" value="Male" <?php if(Input::old('sex') == 'Male'): ?> selected="selected" <?php endif; ?>>Male</option>
 										</select>
-										@if($errors->has('sex'))
+										<?php if($errors->has('sex')): ?>
 											<li class="list-group-item list-group-item-danger">Please check your input.</li>
-										@endif
+										<?php endif; ?>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Birthdate</label>
 									<div class="col-sm-7">
-										<input class="form-control" name="birthdate" id="birthdate" type="date" value="{{old('birthdate')}}" required>
-										@if($errors->has('birthdate'))
+										<input class="form-control" name="birthdate" id="birthdate" type="date" value="<?php echo e(old('birthdate')); ?>" required>
+										<?php if($errors->has('birthdate')): ?>
 											<li class="list-group-item list-group-item-danger">Please check your birthdate is correct.</li>
-										@endif
+										<?php endif; ?>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Contact Number</label>
 									<div class="col-sm-7">
-										<input class="form-control" name="contactNumber" id="contactNumber" type="text" value="{{old('contactNumber')}}" required>
-										@if($errors->has('contactNumber'))
+										<input class="form-control" name="contactNumber" id="contactNumber" type="text" value="<?php echo e(old('contactNumber')); ?>" required>
+										<?php if($errors->has('contactNumber')): ?>
 											<li class="list-group-item list-group-item-danger">Please enter a valid contact number.</li>
-										@endif
+										<?php endif; ?>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Email Address</label>
 									<div class="col-sm-7">
-										<input class="form-control" name="emailAddress" id="emailAddress" type="email" value="{{old('emailAddress')}}" required>
-										@if($errors->has('emailAddress'))
+										<input class="form-control" name="emailAddress" id="emailAddress" type="email" value="<?php echo e(old('emailAddress')); ?>" required>
+										<?php if($errors->has('emailAddress')): ?>
 											<li class="list-group-item list-group-item-danger">Please use a valid email address.</li>
-										@endif
+										<?php endif; ?>
 									</div>
 								</div>
 								
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Current Address</label>
 									<div class="col-sm-7">
-										<textarea class="form-control" name="currentAddress" id="currentAddress"required>{{{old('currentAddress')}}}</textarea>
-										@if($errors->has('currentAddress'))
+										<textarea class="form-control" name="currentAddress" id="currentAddress"required><?php echo e(old('currentAddress')); ?></textarea>
+										<?php if($errors->has('currentAddress')): ?>
 											<li class="list-group-item list-group-item-danger">Please check if address is correct.</li>
-										@endif
+										<?php endif; ?>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Permanent Address</label>
 									<div class="col-sm-7">
-										<textarea class="form-control" name="permanentAddress" id="permanentAddress" required>{{{old('permanentAddress')}}}</textarea>
-										@if($errors->has('permanentAddress'))
+										<textarea class="form-control" name="permanentAddress" id="permanentAddress" required><?php echo e(old('permanentAddress')); ?></textarea>
+										<?php if($errors->has('permanentAddress')): ?>
 											<li class="list-group-item list-group-item-danger">Please check if address is correct.</li>
-										@endif
+										<?php endif; ?>
 									</div>
 								</div>
 
@@ -161,13 +159,13 @@
 									<div class="col-sm-7">
 										<select class="form-control" name="degree" id="degree" required>
 											<option selected disabled></option>
-											@foreach($degrees as $d)
-												<option value="{{ $d->degree }}" @if (Input::old('degree') == $d->degree) selected="selected" @endif>{{ $d->degree }}</option>
-											@endforeach
+											<?php foreach($degrees as $d): ?>
+												<option value="<?php echo e($d->degree); ?>" <?php if(Input::old('degree') == $d->degree): ?> selected="selected" <?php endif; ?>><?php echo e($d->degree); ?></option>
+											<?php endforeach; ?>
 										</select>
-										@if($errors->has('degree'))
+										<?php if($errors->has('degree')): ?>
 											<li class="list-group-item list-group-item-danger">Please check your input.</li>
-										@endif
+										<?php endif; ?>
 									</div>
 								</div>
 
@@ -176,34 +174,34 @@
 									<div class="col-sm-7">
 										<select class="form-control" name="specialization" id="specialization" required>
 											<option selected disabled></option>
-											@foreach($specializations as $s)
-												<option value="{{ $s->specialization }}"  @if (Input::old('specialization') == $s->specialization) selected="selected" @endif>{{ $s->specialization }}</option>
-											@endforeach
+											<?php foreach($specializations as $s): ?>
+												<option value="<?php echo e($s->specialization); ?>"  <?php if(Input::old('specialization') == $s->specialization): ?> selected="selected" <?php endif; ?>><?php echo e($s->specialization); ?></option>
+											<?php endforeach; ?>
 										</select>
-										@if($errors->has('specialization'))
+										<?php if($errors->has('specialization')): ?>
 											<li class="list-group-item list-group-item-danger">Please check your input.</li>
-										@endif
+										<?php endif; ?>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Year Graduated</label>
 									<div class="col-sm-7">
-										<input class="form-control" name="yearGraduated" id="number" type="text" value="{{old('yearGraduated')}}" required>
-										@if($errors->has('yearGraduated'))
+										<input class="form-control" name="yearGraduated" id="number" type="text" value="<?php echo e(old('yearGraduated')); ?>" required>
+										<?php if($errors->has('yearGraduated')): ?>
 											<li class="list-group-item list-group-item-danger">Please enter a valid year (eg. 1990).</li>
-										@endif
+										<?php endif; ?>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label">School Graduated From</label>
 									<div class="col-sm-7">
-										<input class="form-control" name="school" id="school" type="text" value="{{old('school')}}" required>
+										<input class="form-control" name="school" id="school" type="text" value="<?php echo e(old('school')); ?>" required>
 									</div>
-									@if($errors->has('school'))
+									<?php if($errors->has('school')): ?>
 											<li class="list-group-item list-group-item-danger">Please check if your school is correct.</li>
-									@endif
+									<?php endif; ?>
 								</div>
 
 								<div class="form-group">
@@ -221,4 +219,5 @@
 					</div>
 				</div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('facultyandstaff.admin.dash-admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
