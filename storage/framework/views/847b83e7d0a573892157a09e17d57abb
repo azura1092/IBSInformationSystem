@@ -3,15 +3,15 @@
     <legend><h2>User Logs</h2></legend>
 
     <table class="table table-hover">
-        <thead style="background-color: #a9c056; color: #fff;">
-            <tr>
-                <th>Log ID</th>
-                <th>Employee ID</th>
-                <th>Transaction</th>
-                <th>Timestamp</th>
-                <th>IP Address</th>                                
-            </tr>
-        </thead>
+            <thead style="background-color: #a9c056; color: #fff;">
+                <tr>
+                    <th>Log ID</th>
+                    <th>Employee ID</th>
+                    <th>Transaction</th>
+                    <th>Timestamp</th>
+                    <th>IP Address</th>                                
+                </tr>
+            </thead>
 
         <?php foreach($logs as $row): ?>
             <tr>
@@ -28,4 +28,4 @@
 <?php $__env->stopSection(); ?>    
 
 
-<?php echo $__env->make('facultyandstaff.admin.dash-admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('alumni', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

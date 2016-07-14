@@ -1,0 +1,247 @@
+<?php $__env->startSection('content'); ?>
+
+	<div class="container-fluid">
+  		<div class="row">
+  			<?php if($status): ?>
+				<div class="alert alert-success alert-dismissable">
+		            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		            Successfully deleted the record!
+		    	</div>
+			<?php endif; ?>
+  			<legend><h2>Graduate Records</h2></legend>
+
+  			<div class="row">					
+				<!-- SEARCH -->
+				<div class="col-xs-12">
+					<div class="search-section">
+					 	<form class="form-horizontal" method="POST" action="<?php echo e(url('/search-graduate-filter')); ?>">
+						    <div class="input-group">
+						      <div class="input-group-btn">
+						        <button type="button" class="btn btn-search dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						          Search Filter <span class="caret"></span>
+						        </button>
+						        <ul class="dropdown-menu" role="menu">
+									<li><a href="#">Major</a></li>
+									<li><a href="#">Master of Science Degree</a></li>
+									<li><a href="#">Year Graduated</a></li>
+									<li><a href="#">Current Company</a></li>
+									<li><a href="#">Last Name</a></li>
+								</ul>
+						      </div>
+						      <input type="hidden" name="search_param" value="all" id="search-param">
+							  <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+						      <input type="text" id="input-getter" class="form-control" placeholder="Select search filter">
+						      <span class="input-group-btn">
+						        <button class="btn btn-search" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+						      </span>
+						    </div>
+						</form>
+  					</div>		
+				<!-- /search -->
+				</div>
+  			<?php if(count($graduates)<1): ?>
+  				<div class="col-md-offset-3 col-md-6 col-md-offset-3">	
+						<div class="row">
+							<h1><i class="fa fa-archive" style="color: #ccc; font-size:100px;"></i><br><p style="color: #ccc;">No records yet.</p></h1>
+						</div>
+				</div>
+  			<?php else: ?>
+			<?php $i = 1?>
+				  	<table class="table table-hover">
+						<thead style="background-color: #a9c056; color: #fff;">
+							<tr>
+								<th>Name</th>
+<!-- //===========================-->
+ 								<th>
+ 								    <select name="selectMajor" style="border: none;
+    								background-color: #a9c056;">
+							        <option selected="selected"> Major </option>
+							        <!-- <option>major 1</option>
+							        <option>major 2</option>
+							    	 -->	
+							    	 		<?php echo e($majorTemp = ''); ?>
+
+							    	 		<?php echo e($counterMajor = 1); ?>
+
+
+											<?php foreach($graduates->sortBy('major') as $p): ?>
+												<?php if($counterMajor == 1): ?>
+													<option><?php echo e($p->major); ?></option>
+													<?php echo e($majorTemp = $p->major); ?>
+
+													<?php echo e($counterMajor = $counterMajor + 1); ?>												
+												<?php else: ?>
+													<?php if($majorTemp != $p->major): ?>
+														<option><?php echo e($p->major); ?></option>
+														<?php echo e($majorTemp = $p->major); ?>
+
+													<?php else: ?>
+														<?php echo e($majorTemp = $p->major); ?>
+
+													<?php endif; ?>
+												<?php endif; ?>
+											<?php endforeach; ?>
+							    	 </select>
+								</th>
+
+ 								<th>
+ 								    <select name="selectYear"  style="border: none; background-color: #a9c056;">
+							        <option selected="selected"> Year </option>
+							        		<?php echo e($yeargradTemp = ''); ?>
+
+							    	 		<?php echo e($counteryeargrad = 1); ?>
+
+
+											<?php foreach($graduates->sortBy('yeargrad') as $p): ?>
+												<?php if($counteryeargrad == 1): ?>
+													<option><?php echo e($p->yeargrad); ?></option>
+													<?php echo e($yeargradTemp = $p->yeargrad); ?>
+
+													<?php echo e($counteryeargrad = $counteryeargrad + 1); ?>												
+												<?php else: ?>
+													<?php if($yeargradTemp != $p->yeargrad): ?>
+														<option><?php echo e($p->yeargrad); ?></option>
+														<?php echo e($yeargradTemp = $p->yeargrad); ?>
+
+													<?php else: ?>
+														<?php echo e($yeargradTemp = $p->yeargrad); ?>
+
+													<?php endif; ?>
+												<?php endif; ?>
+											<?php endforeach; ?>
+							    	</select>
+								</th>
+<!-- //===========================-->
+
+								<th>Options</th>								
+							</tr>
+						</thead>
+					<?php foreach($graduates as $row): ?>
+							<tbody>
+								<tr>
+									<td><a href="#" data-toggle="modal" data-target="#myModal<?php echo e($i); ?>" style="padding:10px 10px;display:block;color:#000; text-decoration:none;"><?php echo e($row->lname); ?>, <?php echo e($row->fname); ?> <?php echo e($row->mname); ?></a></td>
+										<div id="myModal<?php echo e($i); ?>" class="modal fade" role="dialog">
+											<div class="modal-dialog">
+
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal">&times;</button>
+														<h4 class="modal-title">About <?php echo e($row->fname); ?> </h4>
+													</div>
+													<div class="col-md-12">
+														<div class="col-md-2 tabs"> 
+      													<br>
+													      <ul class="nav">
+													        <li class="active"><a href="#a<?php echo e($i); ?>" data-toggle="tab"><span class="fa fa-user"></span></a></li>
+													        <li><a href="#b<?php echo e($i); ?>" data-toggle="tab"><span class="fa fa-map-marker"></span></a></li>
+													        <li><a href="#c<?php echo e($i); ?>" data-toggle="tab"><span class="fa fa-graduation-cap"></span></a></li>
+													        <li> <a href="#d<?php echo e($i); ?>" data-toggle="tab"><span class="fa fa-briefcase"></span></a></li>
+													      </ul>
+													    </div>
+
+														<div class="tab-content" style="padding:15px;">
+															<div id="a<?php echo e($i); ?>" class="tab-pane fade in active">
+																<div class="col-md-10">
+																	<ul class="list-group"><br>
+																		<li class="list-group-item"><strong>Student Number:</strong> <?php echo e($row->studnum); ?></li>
+																		<li class="list-group-item"><strong>Name:</strong> <?php echo e($row->fname); ?> <?php echo e($row->mname); ?> <?php echo e($row->lname); ?> <?php echo e($row->suffix); ?></li>
+																		<li class="list-group-item"><strong>Birthdate:</strong> <?php echo e($row->bday); ?></li>
+																		<li class="list-group-item"><strong>Sex:</strong> <?php echo e($row->sex); ?></li>
+																	</ul>
+																</div>
+															</div>
+															<div id="b<?php echo e($i); ?>" class="tab-pane fade">
+																<div class="col-md-10">
+																	<ul class="list-group"><br>
+																		<li class="list-group-item"><strong>Contact Number:</strong> <?php echo e($row->contactnum); ?></li>
+																		<li class="list-group-item"><strong>Permanent Address:</strong> <?php echo e($row->permaddress); ?></li>
+																		<li class="list-group-item"><strong>Current Address:</strong> <?php echo e($row->curraddress); ?></li>
+																	</ul>
+																</div>
+															</div>
+															<div id="c<?php echo e($i); ?>" class="tab-pane fade">
+															  	<div class="col-md-10">
+																	<ul class="list-group"><br>
+																		<li class="list-group-item"><strong>Major:</strong> <?php echo e($row->major); ?></li>
+																		<li class="list-group-item"><strong>Master of Science Degree:</strong> <?php echo e($row->mscdegree); ?></li>
+																		<li class="list-group-item"><strong>Year Graduated:</strong> <?php echo e($row->yeargrad); ?></li>
+																		<li class="list-group-item"><strong>Honors and Awards Received:</strong> <?php echo e($row->honorsreceived); ?></li>
+																	</ul>
+																</div>
+															</div>
+															<div id="d<?php echo e($i); ?>" class="tab-pane fade">
+															  	<div class="col-md-10">
+																	<ul class="list-group">
+																		<li class="list-group-item"><strong>Name of Company/Institution:</strong> <?php echo e($row->companyname); ?></li>
+																		<li class="list-group-item"><strong>Current Position:</strong> <?php echo e($row->position); ?></li>
+																		<li class="list-group-item"><strong>Nature of Work:</strong> <?php echo e($row->natureofwork); ?></li>
+																		<li class="list-group-item"><strong>Addree:</strong> <?php echo e($row->companyaddress); ?></li>
+																		<li class="list-group-item"><strong>Country:</strong> <?php echo e($row->country); ?></li>
+																		<li class="list-group-item"><strong>Email Address:</strong> <?php echo e($row->companyemail); ?></li>
+																		<li class="list-group-item"><strong>Contact Number:</strong> <?php echo e($row->companycontactnum); ?></li>
+
+																	</ul>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<form class="form-horizontal" style ="float: left; padding: -5px;" method="POST" action="<?php echo e(url('/edit-graduate')); ?>">
+															<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+															<input type="hidden" name="studnum" value="<?php echo e($row->studnum); ?>">
+															<button type='submit' class='btn btn-default'><i class="fa fa-pencil"></i></button>
+														</form>
+														<button type="button" id="search-confirm-del-button" class="btn btn-danger" data-toggle="modal" data-id="<?php echo e($row->studnum); ?> <?php echo e($row->fname); ?> <?php echo e($row->mname); ?> <?php echo e($row->lname); ?> <?php echo e($row->suffix); ?>" data-target="#confirm-delete-modal"><i class="fa fa-minus"></i></button>			
+														<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									<td><?php echo e($row->major); ?></td>
+									<td><?php echo e($row->yeargrad); ?></td>
+									<td>
+										
+										<form class="form-horizontal" style ="float: left; padding: -5px;" method="POST" action="<?php echo e(url('/edit-graduate')); ?>">
+											<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+											<input type="hidden" name="studnum" value="<?php echo e($row->studnum); ?>">
+											<button type='submit' class='btn btn-default'><i class="fa fa-pencil"></i></button>
+										</form>
+										&emsp; <button type="button" id="search-confirm-del-button" class="btn btn-danger" data-toggle="modal" data-id="<?php echo e($row->studnum); ?> <?php echo e($row->fname); ?> <?php echo e($row->mname); ?> <?php echo e($row->lname); ?> <?php echo e($row->suffix); ?>" data-target="#confirm-delete-modal"><i class="fa fa-minus"></i></button>												
+									</div>
+									</td>
+								</tr>
+				  	<?php $i=$i+1; ?>
+					<?php endforeach; ?>
+				<div class ="center">
+					<?php echo $graduates->render(); ?>
+
+				</div>
+			<?php endif; ?>
+			</tbody>
+		</table>
+		</div>
+		
+		<div class="modal fade" id="confirm-delete-modal" tab-index="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<div class="modal-title">Confirm Delete</div>
+				</div>
+				<div class="modal-body">
+				</div>
+				<div class="modal-footer">
+					<form class="search-result-btns" method="POST" action="">
+						<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+						<input class="getter" type="hidden" name="studnum" value="">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						<button type="submit" id="search-delete-button" class="btn btn-danger">Delete</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('alumni', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

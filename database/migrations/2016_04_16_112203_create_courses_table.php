@@ -15,7 +15,8 @@ class CreateCoursesTable extends Migration {
 		Schema::create('courses', function(Blueprint $table)
 		{
 			$table->engine = 'InnoDB';
-			$table->string('courseNum')->primary();
+			$table->increments('id');
+			$table->string('courseNum')->unique();
 			$table->string('courseTitle');
 			$table->string('classification');
 			$table->string('semOffered');

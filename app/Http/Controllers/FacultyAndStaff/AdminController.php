@@ -40,6 +40,7 @@ use App\EditNotice;
 use App\Logs;
 use App\CourseOffering;
 
+
 class AdminController extends MainController 
 {
 	public function index() 
@@ -131,33 +132,6 @@ class AdminController extends MainController
 			if(Session::get('type') == 2)
 			{
 				global $temp;
-
-				$inputs = Input::all();
-				$rules = array(
-					'employeeNumber' => 'required|digits:10|unique:employees,employeeNum',
-					'firstName' => 'required|min:2',
-					'middleName' => 'required|min:2',
-					'lastName' => 'required|min:2',
-					'sex' => 'required',
-					'birthdate' => 'required|date',
-					'position' => 'required|exists:faculty_positions,positionTitle',
-					'division' => 'required|exists:divisions,division',
-					'contactNumber' => 'required|between:1,15',
-					'emailAddress' => 'email|required|min:6|unique:employees',
-					'currentAddress' => 'required|min:5',
-					'permanentAddress' => 'required|min:5',
-					'degree' => 'required|exists:degrees,degree',
-					'specialization' => 'required|exists:specializations,specialization',
-					'yearGraduated' => 'required|digits:4',
-					'school' => 'required|min:4'
-				);
-				// test input against the set rules
-				$validation = Validator::make($inputs, $rules);
-
-				if($validation->fails()){
-					return redirect('add-faculty-employee')->withInput()->withErrors($validation->errors());
-				}
-
 				$type = 1;
 				$employeeNumber = Input::get('employeeNumber');
 				$firstName = Input::get('firstName');
@@ -209,30 +183,6 @@ class AdminController extends MainController
 			if(Session::get('type') == 2)
 			{
 				global $temp;
-
-				// data validation for add staff employee module
-				$inputs = Input::all();
-				$rules = array(
-					'employeeNumber' => 'required|digits:10|unique:employees,employeeNum',
-					'firstName' => 'required|min:2',
-					'middleName' => 'required|min:2',
-					'lastName' => 'required|min:2',
-					'sex' => 'required',
-					'birthdate' => 'required|date',
-					'position' => 'required|exists:staff_positions,positionTitle',
-					'contactNumber' => 'required|digits:11',
-					'emailAddress' => 'email|required|min:6|unique:employees',
-					'currentAddress' => 'required|min:5',
-					'permanentAddress' => 'required|min:5'
-
-				);
-				// test input against the set rules
-				$validation = Validator::make($inputs, $rules);
-
-				if($validation->fails()){
-					return redirect('add-staff-employee')->withInput()->withErrors($validation->errors());
-				}
-
 				$type = 0;
 				$employeeNumber = Input::get('employeeNumber');
 				$firstName = Input::get('firstName');
@@ -270,45 +220,7 @@ class AdminController extends MainController
 		Session::put('error', 'You must log in first!');
 		return redirect('login');
 	}
-
-	public function uploadEmployeeBulkData()
-	{
-		if(Session::has('type'))
-		{
-			if(Session::get('type') == 2)
-			{
-				$editnotifs = EditRequest::all();
-				$message = "";
-				$status = -1;
-				$error = "";
-
-				if(Session::has('message'))
-				{
-					$message = Session::get('message');
-					Session::forget('message');
-				}
-
-				if(Session::has('status'))
-				{
-					$status = Session::get('status');
-					Session::forget('status');
-				}
-
-				if(Session::has('error'))
-				{
-					$error = Session::get('error');
-					Session::forget('error');
-				}
-
-				return view('facultyandstaff.admin.employee-upload-bulk-data', compact('message', 'status', 'error', 'editnotifs'));
-			}
-		}
-
-		Session::put('error', 'You must log in first!');
-		
-		return redirect('login');
-	}
-
+//==========================================
 	public function searchEmployee($type)
 	{
 		if(Session::has('type'))
@@ -352,31 +264,67 @@ class AdminController extends MainController
 				if($type == "id")
 				{
 					$employeeNum = Input::get('employeeNum');
-					$employees = Employees::where('employeeNum', '=', $employeeNum)->get();
-					$status = false;
+					if($employeeNum == "")
+					{
+						$employees = Employees::where('employeeNum', 'LIKE', '%')->get();
+						$message = "Employee not found!";
+						echo "<script type='text/javascript'>alert('$message');</script>";
+					}
+					else {
+						$employees = Employees::where('employeeNum', '=', $employeeNum)->get();
+					}
+						
 				}
 
 				else if($type == "lastname")
 				{
 					$lastName = Input::get('lastName');
-					$employees = Employees::where('lastName', '=', $lastName)->get();
+					if($lastName == "")
+					{
+						$employees = Employees::where('employeeNum', 'LIKE', '%')->get();
+						$message = "Employee not found!";
+						echo "<script type='text/javascript'>alert('$message');</script>";
+					}
+					else {
+						$employees = Employees::where('lastName', '=', $lastName)->get();
+					}
+					
 					$status = false;
 				}
 
 				else if($type == "position")
 				{
 					$position = Input::get('position');
-					$employees = Employees::where('position', '=', $position)->get();
+					if($position == "")
+					{
+						$employees = Employees::where('employeeNum', 'LIKE', '%')->get();
+						$message = "Employee not found!";
+						echo "<script type='text/javascript'>alert('$message');</script>";
+					}
+					else {
+						$employees = Employees::where('position', '=', $position)->get();
+					}
+					
 					$status = false;
 				}
 
 				else if($type == "division")
 				{
 					$division = Input::get('division');
-					$employees = Employeess::where('division', '=', $division)->get();
+					if($division == "")
+					{
+						$employees = Employees::where('employeeNum', 'LIKE', '%')->get();
+						$message = "Employee not found!";
+						echo "<script type='text/javascript'>alert('$message');</script>";
+					}
+					else {
+						$employees = Employees::where('division', '=', $division)->get();
+					}
+					
 					$status = false;
 				}
 
+				
 				return view('facultyandstaff.admin.search-employee', compact('employees', 'deleteStatus', 'archiveStatus', 'retrieveStatus', 'editnotifs'));
 			}
 		}
@@ -385,7 +333,8 @@ class AdminController extends MainController
 
 		return redirect('login');
 	}
-
+//==========================================
+	
 	public function editEmployee()
 	{
 		if(Session::has('type'))
@@ -1750,14 +1699,103 @@ class AdminController extends MainController
 		return redirect('login');
 	}
 
-	public function viewSystemLog()
-	{
-		$logs = Logs::orderBy('created_at', 'des')->get();
-		$ipaddress = Request::ip();
+//===========================================
+    public function uploadCourseBulkData()
+    {
+        $message = "";
+        $status = -1;
 
-		if(Session::get('type') == 2)
-			$editnotifs = EditRequest::all();
+        if(Session::get('type') == 2)
+        {
+            $editnotifs = EditRequest::all();
+        }
 
-		return view('facultyandstaff.admin.view-user-logs', compact('logs', 'editnotifs', 'ipaddress'));
-	}
+        if(Session::has('message'))
+        {
+            $message = Session::get('message');
+            Session::forget('message');
+        }
+
+        if(Session::has('status'))
+        {
+            $status = Session::get('status');
+            Session::forget('status');
+        }
+        
+        return view('facultyandstaff.admin.upload-bulk-data', compact('message', 'status', 'editnotifs'));
+    }
+//===========================================
+
+
+
+//==========================================
+    public function uploadEmployeeBulkData()
+    {
+        $message = "";
+        $status = -1;
+
+        if(Session::get('type') == 2)
+        {
+            $editnotifs = EditRequest::all();
+        }
+
+        if(Session::has('message'))
+        {
+            $message = Session::get('message');
+            Session::forget('message');
+        }
+
+        if(Session::has('status'))
+        {
+            $status = Session::get('status');
+            Session::forget('status');
+        }
+        
+        return view('facultyandstaff.admin.employee-upload-bulk-data', compact('message', 'status', 'editnotifs'));
+    }
+//=======================================
+
+
+/*=======================================
+    public function viewCourse($type)
+    {
+    	if(Session::has('type'))
+    	{
+			if(Session::get('type') == 2)
+			{
+				$editnotifs = EditRequest::all();
+		    	$courses = Course::all();
+		    	$s = 0;
+				$courseNum = Input::get('courseNum');
+				$dbCourseNum = DB::select('select * from courses where courseNum = ?', [$courseNum]);
+			
+				if ($courseNum == "") {
+					$s = 0;							
+				}
+				
+				elseif (count($dbCourseNum) <= 0)
+				{
+					$courseSelected = Course::where('courseNum', 'LIKE'.$courseNum.'%')->get();
+					$s = 2;		
+				}
+
+
+				else
+				{
+					$courseSelected = Course::where('courseNum', '=', $courseNum)->get();
+					//$courseSelected = Course::where('courseNum', 'LIKE'.$courseNum.'%')->get();
+					$s = 1;		
+				}
+
+				return view('facultyandstaff.admin.view-course', compact('s', 'courses', 'courseSelected', 'editnotifs'));
+			}
+				
+		}
+
+		Session::put('error', 'You must log in first!');
+
+		return redirect('login');
+    }
+//=======================================*/
+
 }

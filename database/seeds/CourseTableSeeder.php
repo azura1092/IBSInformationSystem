@@ -9,6 +9,16 @@ class CourseTableSeeder extends Seeder {
 	{
 		DB::table('courses')->delete();
 		DB::table('courses')->insert(array(
+			/*['courseNum' => '',
+			 'courseTitle' => '',
+			 'classification' => 'Undergraduate',
+			 'semOffered' => '',
+			 'prerequisite' => '',
+			 'numOfUnits' => '']*/
+
+		/* UNDERGRADUATE COURSES */
+
+			// BIOLOGY (26)
 
 			['courseNum' => 'BIO 1',
 			 'courseTitle' => 'General Biology I',

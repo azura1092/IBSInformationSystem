@@ -63,7 +63,7 @@ return [
             'prefix' => '',
             'unix_socket' => '/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock',
             'strict' => false,
-            'engine' => 'innoDB',
+            'engine' => null,
         ],
 
         'pgsql' => [

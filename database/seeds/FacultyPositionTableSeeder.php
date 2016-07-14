@@ -9,9 +9,9 @@ class FacultyPositionTableSeeder extends Seeder {
 	{
 		DB::table('faculty_positions')->delete();
 		DB::table('faculty_positions')->insert(array(
-			['positionTitle' => 'Assistant Professor'],
-			['positionTitle' => 'Associate Professor'],
 			['positionTitle' => 'Instructor'],
+			['positionTitle' => 'Asst. Professor'],
+			['positionTitle' => 'Assoc. Professor'],
 			['positionTitle' => 'Professor'],
 			['positionTitle' => 'Professor Emeritus']
 		));

@@ -11,6 +11,11 @@ use Validator;
 use Session;
 
 use App\Employees;
+use App\FacultyPosition;
+use App\StaffPosition;
+use App\Degree;
+use App\Division;
+use App\Specialization;
 
 Class EmployeeCsvImportController extends MainController 
 {
@@ -123,26 +128,86 @@ Class EmployeeCsvImportController extends MainController
 
         return redirect('login');
     }
-   
+  
+
+
     public function storeToDb($employeeNum, $type, $firstName, $middleName, $lastName, $sex, $birthdate, $position, $division, $contactNum, $emailAddress, $currentAddress, $permanentAddress, $degree, $specialization, $schoolGraduated, $yearGraduated)
     {
         if(Session::has('type'))
         {
-            if(Session::get('type') == 2)
-            {       
-                $results = Employees::where('employeeNum', '=', $employeeNum)->get();
+                 
+            $regEmployeeNum = preg_match("/^[0-9]{9,9}$/", $employeeNum);
+            $regFirstName = preg_match("/^[A-Z][A-Za-z]{1,}[\s[A-Z][A-Za-z]{1,}]{0,}$/", $firstName);
+            $regMiddleName = preg_match("/^[A-Z]{0,1}[A-Za-z]{0,}[\s[A-Z][A-Za-z]{0,}]{0,}$/", $middleName);
+            $regLastName = preg_match("/^[A-Z][A-Za-z]{1,}[\s[A-Z][A-Za-z]{1,}]{0,}$/", $lastName);
+            $regBirthdate = preg_match("/^(19|20)[0-9]{2}\-(0[1-9]|1[0-2])\-(0[1-9]|1[0-9]|2[0-9]|3[01])$/", $birthdate);
+            $regContactNum = preg_match("/^[0][9][0-9]{9,9}$/", $contactNum);
+            $regEmailAddress = preg_match("/^[A-Za-z]{1,1}.{1,}@[A-Za-z]{1,}\.[A-Za-z]{1,}$/", $emailAddress);
+            $regCurrentAddress = preg_match("/.{3,}/", $currentAddress);
+            $regPermanentAddress = preg_match("/.{3,}/", $permanentAddress);
+            $regSchoolGraduated = preg_match("/.{3,}/", $schoolGraduated);
+           
+            $results = Employees::where('employeeNum', '=', $employeeNum)->get();
+            $resultsEmail = Employees::where('emailAddress', '=', $emailAddress)->get();
+            $resultsFacultyPosition = FacultyPosition::where('positionTitle', '=', $position)->get();
+            $resultsStaffPosition = StaffPosition::where('positionTitle', '=', $position)->get();
+            $resultsDivision = Division::where('division', '=', $division)->get();
+            $resultsDegree = Degree::where('degree', '=', $degree)->get();
+            $resultsSpecialization = Specialization::where('specialization', '=', $specialization)->get();
+            
 
-                if(COUNT($results) == 0)
+            if(COUNT($results) == 0 && COUNT($resultsEmail) == 0)
+            {
+                if( 
+                    $regEmployeeNum 
+                    && $regFirstName 
+                    && $regMiddleName 
+                    && $regLastName 
+                    && $regBirthdate 
+                    && $regContactNum 
+                    && $regEmailAddress 
+                    && $regCurrentAddress 
+                    && $regPermanentAddress 
+                    && $regSchoolGraduated 
+                    && ($type == 0 || $type == 1 || $type == 2)
+                    && ($sex == 'M' || $sex == 'F' )
+                    && ($yearGraduated >= 1950)
+                    && (COUNT($resultsFacultyPosition) > 0 || COUNT($resultsStaffPosition) > 0 ) 
+                    && COUNT($resultsDivision) > 0
+                    && COUNT($resultsDegree) > 0
+                    && COUNT($resultsSpecialization) > 0
+                )
+
+
                 {
-                    Employees::create(['employeeNum' => $employeeNum, 'type' => $type, 'firstName' => $firstName, 'middleName' => $middleName, 'lastName' => $lastName, 'sex' => $sex, 'birthdate' => $birthdate, 'position' => $position, 'division' => $division ,'contactNum' => $contactNum, 'emailAddress' => $emailAddress, 'currentAddress' => $currentAddress, 'permanentAddress' => $permanentAddress, 'degree' => $degree, 'specialization' => $specialization, 'schoolGraduated' => $schoolGraduated, 'yearGraduated' => $yearGraduated]);
+                    Employees::create
+                    ([
+                        'employeeNum' => $employeeNum, 
+                        'type' => $type, 
+                        'firstName' => $firstName,
+                        'middleName' => $middleName, 
+                        'lastName' => $lastName, 
+                        'sex' => $sex, 
+                        'birthdatdivisione' => $birthdate, 
+                        'position' => $position, 
+                        'division' => $division ,
+                        'contactNum' => $contactNum, 
+                        'emailAddress' => $emailAddress, 
+                        'currentAddress' => $currentAddress, 
+                        'permanentAddress' => $permanentAddress, 
+                        'degree' => $degree, 
+                        'specialization' => $specialization, 
+                        'schoolGraduated' => $schoolGraduated, 
+                        'yearGraduated' => $yearGraduated
+                    ]);
                     
                     return 1;
                 }
-
                 return 0;
             }
+
+            return 0;            
         }
 
-        return redirect('login');
     }
 }

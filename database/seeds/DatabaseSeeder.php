@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder {
 		$this->call('StaffPositionTableSeeder');
 		$this->call('SpecializationTableSeeder');
 		$this->call('CourseTableSeeder');
+		//$this->call('RoleSeeder');
 		$this->call('EmployeeTableSeeder');
-		$this->call('CourseOfferingTableSeeder');
 	}
+
 }

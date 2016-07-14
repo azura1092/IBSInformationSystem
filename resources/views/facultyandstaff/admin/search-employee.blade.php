@@ -1,10 +1,9 @@
-
 @extends('facultyandstaff.admin.dash-admin')
 
 @section('content')
-
+		
 	@if($deleteStatus)
- 
+
 		<div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             Successfully deleted the record!
@@ -31,36 +30,36 @@
 	@endif
 
 	<div class="row">					
+		<!-- SEARCH -->
 		<div class="col-xs-12">
-			<div class="search-section"> 
-				<h4>Search</h4>
-				
-				<hr></hr>
-				
-				<div class="input-group">
-					<div class="input-group-btn">
-						<button type="button" class="btn btn-search dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by <span class="caret"></span></button>
-						<ul id="filterList" class="dropdown-menu" role="menu">
-							<li><a href="#">Employee ID</a></li>
-							<li><a href="#">Last Name</a></li>
-							<li><a href="#">Position</a></li>
-							<li><a href="#">Division</a></li>
-						</ul>
-					</div>
-					<form class="form-horizontal" method="POST" action="{{ url('/search-employee-filter') }}">
-						<input type="hidden" name="search_param" value="all" id="search-param">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-						<input type="text" id="input-getter" name="" placeholder="Select search filter" class="col-sm-11 control-label" style="text-align:left;">
-						<span class="input-group-btn">
-							<button class="btn btn-search" type="submit">
-								<span class="glyphicon glyphicon-search"></span>
-							</button>
-						</span>
-					</form>
+			<div class="search-section">
+			<h4>Search</h4>
+			<hr></hr>
+			<div class="input-group">
+				<div class="input-group-btn">
+					<button type="button" class="btn btn-search dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by <span class="caret"></span></button>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="#">Employee ID</a></li>
+						<li><a href="#">Last Name</a></li>
+						<li><a href="#">Position</a></li>
+						<li><a href="#">Division</a></li>
+					</ul>
 				</div>
+				<form class="form-horizontal" method="POST" action="{{ url('/search-employee-filter') }}">
+					<input type="hidden" name="search_param" value="all" id="search-param">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+					<input type="text" id="input-getter" name="" placeholder="Select search filter" class="col-sm-11 control-label" style="text-align:left;"placeholder="Select search filter" >
+					<span class="input-group-btn">
+						<button class="btn btn-search" type="submit">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+				</form>
+			</div>
 			</div>
 		</div>
+		<!-- /search -->
 	</div>
 
 	@if(count($employees) > 0)
@@ -98,7 +97,8 @@
 								</button>	
 								<button type="button" id="search-confirm-del-button" class="btn btn-danger" data-toggle="modal" data-id="{{ $e->employeeNum }} {{ $e->firstName }} {{ $e->lastName }}" data-target="#confirm-delete-modal">
 									Delete
-								</button>
+								</button>		
+								
 							</div>
 						</form>
 					</div>
@@ -174,51 +174,4 @@
 			</div>
 		</div>
 	</div>
-
-	<script> 
-		//autocomplete script
-		$(document).ready(
-			function() {
-				var i = 0;
-				var input = Array();
-
-				//default autocomplete is based on last name
-				@foreach ($employees as $e)
-					input[i++] = "{{$e->lastName}}" + ", {{$e->firstName}}";
-				@endforeach
-
-				$("#input-getter").autocomplete({ source: input });
-
-				$('#filterList li').on(
-					"click", 
-					function() {
-						i = 0;
-
-						if($(this).text() === "Employee ID") {
-							@foreach ($employees as $e)
-								input[i++] = "{{$e->employeeNum}}";
-							@endforeach
-						}
-						else if($(this).text() === "Last Name") {
-							@foreach ($employees as $e)
-								input[i++] = "{{$e->lastName}}" + ", {{$e->firstName}}";
-							@endforeach
-						}
-						else if($(this).text() === "Position") {
-							@foreach ($employees as $e)
-								input[i++] = "{{$e->position}}";
-							@endforeach
-						}
-						else if($(this).text() === "Division") {
-							@foreach ($employees as $e)
-								input[i++] = "{{$e->division}}";
-							@endforeach
-						}
-
-						$("#input-getter").autocomplete({ source: input });
-					}
-				);
-			}
-		);
-	</script>
 @endsection

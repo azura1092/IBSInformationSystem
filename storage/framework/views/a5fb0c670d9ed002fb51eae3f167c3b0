@@ -1,0 +1,97 @@
+<?php $__env->startSection('content'); ?>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<h3>View Courses</b></h3>
+			<hr></hr>
+		</div>
+	</div>
+				
+	<div class="update-section">
+		<div class="row">
+			<div class="col-xs-12">
+				<form class="form-horizontal" method="POST" action="<?php echo e(url('/view-course-selected')); ?>">
+					<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+					<input type="hidden" name="search_param" value="all" id="search-param">								
+					
+					
+					<div class="form-group">
+				<form class="form-horizontal" method="POST" action="<?php echo e(url('/search-employee-filter')); ?>">
+					<input type="text" id="course-getter" name="courseNum" placeholder="Search by Course Number" class="col-sm-11 control-label" style="text-align:left;">
+					<span class="input-group-btn">
+						<button class="btn btn-search" type="submit">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+				</form>
+
+					</div>						
+				</form>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<?php if($s==1): ?>	
+					<div class="panel panel-success" style="margin-top: 25px;">
+						<div class="panel-heading">
+							<?php echo e($courseSelected[0]->courseNum); ?> - <?php echo e($courseSelected[0]->courseTitle); ?>
+
+						</div>
+						<div class="panel-body">
+							<table class="table table-hover">
+								<thead>
+									<tr style="font-weight: bold; text-align: center;">
+										<td>Section</td>
+										<td>Units</td>
+										<td>Lecture</td>
+										<td>Lecturer</td>
+										<td>Laboratory</td>
+										<td>Instructor</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr style="text-align: center;">
+										<td>B-1L</td>
+										<td>3</td>
+										<td>9-10 WF IBSLH Main</td>
+										<td>TBA</td>
+										<td>7-10 Mon BS C-116</td>
+										<td>TBA</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="panel-footer">
+							<h6 class="text-right text-muted">
+								Units: <?php echo e($courseSelected[0]->numOfUnits); ?> | 
+								Classification: <?php echo e($courseSelected[0]->classification); ?> 
+								<?php if($courseSelected[0]->semOffered != ""): ?>
+									| Semester Offered: <?php echo e($courseSelected[0]->semOffered); ?>
+
+								<?php endif; ?>
+								<?php if($courseSelected[0]->prerequisite != ""): ?>
+									| Prerequisite: <?php echo e($courseSelected[0]->prerequisite); ?>
+
+								<?php endif; ?>
+							</h6>
+						</div>
+					</div>	
+					
+					<?php elseif($s==0): ?>	
+					<div>
+						
+					</div>
+
+					<?php else: ?>
+					<div>
+						Employee not found.
+					</div>
+				<?php endif; ?>
+			</div>
+		</div>
+	</div>
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('facultyandstaff.admin.dash-admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -2,37 +2,30 @@
 <html lang="en" class="no-js">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-	<meta name="csrf-token" content="{{ csrf_token() }}" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
- 	<link rel="icon" href="img/favicon.ico" />
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/dashboard.css">
- 	<link rel="stylesheet" href="css/font-awesome.min.css">
-	
+	<link rel="icon" href="{{ asset('/img/favicon.ico')}}" />
+	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+	<link rel="icon" href="img/favicon.ico" />
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/util/util.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/dashboard.css"> <!-- Resource style -->
+	<script src="js/modernizr.js"></script> <!-- Modernizr -->
 
-	<link rel="stylesheet" href="css/jquery-ui.css">
-	<link rel="stylesheet" href="css/jquery-ui.min.css">
-	<link rel="stylesheet" href="css/jquery-ui.css">
-	<link rel="stylesheet" href="css/jquery-ui.structure.min.css">
-	<link rel="stylesheet" href="css/jquery-ui.theme.css">
-	<link rel="stylesheet" href="css/jquery-ui.theme.min.css">
-	
-	<script src="js/modernizr.js"></script>
-	<script src="js/jquery-2.1.4.js"></script>
-	<script src="js/jquery.menu-aim.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/dashboard.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-  	
+
+
 	<title>IBS-IS</title>
 </head>
 <body>
 	<header class="cd-main-header">
 		<a href="admin-home" class="cd-logo"><img src="img/logo.png" alt="Logo"></a>
+		
+		<!-- <div class="cd-search is-hidden">
+			<form action="#0">
+				<input type="search" placeholder="Search...">
+			</form>
+		</div> <!-- cd-search --> -->
+
 		<a href="admin-home" class="cd-nav-trigger">Menu<span></span></a> <!-- mobile -->
 
 		<nav class="cd-nav">
@@ -48,6 +41,7 @@
 					<ul>
 						<li><a href="admin-view-profile-{{ Session::get('userEmp')['employeeNum'] }}">My Profile</a></li>
 						<li><a href="logout">Logout</a></li>
+
 					</ul>
 				</li>
 			</ul>
@@ -76,7 +70,7 @@
 					<a href="#">Employee</a>
 					
 					<ul>
-						<li><a href="search-employee-filter">View All or Search</a></li> 
+						<li><a href="search-employee-filter">View All or Search</a></li>
 						<li><a href="add-faculty-employee">Add Faculty Record</a></li>
 						<li><a href="add-staff-employee">Add Staff Record</a></li>
 						<li><a href="generate-report">Generate Report</a></li>
@@ -84,18 +78,6 @@
 						<li><a href="view-archive">Archives</a></li>
 					</ul>
 				</li>
-				<!-- ALUMNI -->
-				<li class="has-children">
-					<a href="#0">Graduate</a>
-
-					<ul>
-						<li><a href="search-graduate-filter">View All or Search</a></li>
-						<li><a href="add-graduate">Add a Record</a></li>
-						<li><a href="graph">Visualize Data</a></li>
-						<li><a href="graduate-upload-bulk-data">Upload Bulk Data</a></li>
-					</ul>
-				</li>
-				<!-- COURSES -->
 				<li class="has-children">
 					<a href="#0">Courses</a>
 					
@@ -103,8 +85,19 @@
 						<li><a href="view-course-select">View Course Offering</a></li>
 						<li><a href="add-course">Add Course</a></li>
 						<li><a href="edit-course-select">Update Course Details</a></li>
+						<li><a href="course-upload-bulk-data">Upload Bulk Data</a></li>
+						
+					</ul>
+				</li>
+				<!-- ALUMNI -->
+				<li class="has-children">
+					<a href="#0">Graduate</a>
 
-						<!-- <li><a href="delete-course-select">Delete Course</a></li> -->
+					<ul>
+						<li><a href="add-graduate">Add a Record</a></li>
+						<li><a href="search-graduate-filter">View All</a></li>
+						<li><a href="graph">Visualize Data</a></li>
+						<li><a href="graduate-upload-bulk-data">Upload Bulk Data</a></li>
 					</ul>
 				</li>
 				<!-- USER LOGS -->
@@ -131,8 +124,12 @@
 
 		</div> <!-- .content-wrapper -->
 	</main> <!-- .cd-main-content -->
+<script src="js/jquery-2.1.4.js"></script>
+<script src="js/jquery.menu-aim.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/dashboard.js"></script> <!-- Resource jQuery -->
 
-<script>
+<!-- <script>
 	$(document).ready(function(e){
 		$('.search-section .dropdown-menu').find('a').click(function(e){
 			e.preventDefault();
@@ -179,7 +176,7 @@
 		});
 	});
 </script>
-
+ -->
 <script>
 	$(document).ready(function(e){
 		$('.search-section .dropdown-menu').find('a').click(function(e){
@@ -203,6 +200,11 @@
 			else if(concept == "Division"){
 				$('.search-section #input-getter').attr("name", "division");
 				$('.search-section form').attr("action", "{{ url('/search-employee-division') }}");
+			}
+
+			else{
+				$('.search-section #input-getter').attr("name", "lastName");
+				$('.search-section form').attr("action", "{{ url('/search-employee-lastname') }}");
 			}
 			
 		});
@@ -253,19 +255,61 @@
 			}
 
 			else if(buttonID == 'delete-course-btn'){
-				$('.modal-body').html("Are you sure you want to delete " + $('#course_num').val() + "?");
+				$('.modal-body').html("Are you sure you want to delete " + $('#course-getter').val() + "?");
 			}
 		});
 	});
 </script>
 
-
-<script type="text/javascript">
+<!-- //===========================================
+ --><script type="text/javascript">
 	function viewProfile(eNum){
 		console.log(eNum);
 		window.open("/admin-view-profile-" + eNum);
 	}
 </script>
 
-</body>
+<script>
+	$(document).ready(function(e){
+
+		$('.btn').click(function(){
+			var buttonID = $(this).attr('id');
+			
+			if(buttonID == 'search-confirm-del-button'){
+				var emp = $(this).data('id').split(" ");				
+
+				$('.getter').val(emp[0]);
+				$('.modal-body').html("Are you sure you want to delete the record of <b>" + emp[1] + " " + emp[2] + "</b>?");
+			}
+
+			else if(buttonID == 'search-delete-button'){
+				$('.search-result-btns').attr("action", "{{ url('/delete-graduate') }}");
+				
+			}
+		});
+			$(document).on('change', '.btn-file :file', function() {
+		  var input = $(this),
+		      numFiles = input.get(0).files ? input.get(0).files.length : 1,
+		      label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+		  input.trigger('fileselect', [numFiles, label]);
+		});
+
+		$(document).ready( function() {
+		    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+		        
+		        var input = $(this).parents('.input-group').find(':text'),
+		            log = numFiles > 1 ? numFiles + ' files selected' : label;
+		        
+        if( input.length ) {
+            input.val(log);
+        } else {
+            if( log ) alert(log);
+        }
+        
+    });
+	});
+	});
+</script>
+<!-- //===========================================
+ --></body>
 </html>

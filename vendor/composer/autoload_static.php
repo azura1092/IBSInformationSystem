@@ -255,13 +255,16 @@ class ComposerStaticInitf38dfbde21577859027782d53709072f
     );
 
     public static $classMap = array (
-        'CourseOfferingTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CourseOfferingTableSeeder.php',
+        'AddCourseLogsTable' => __DIR__ . '/../..' . '/database/migrations/logs/2016_05_02_054028_add_course_logs_table.php',
+        'AddFacultyLogsTable' => __DIR__ . '/../..' . '/database/migrations/logs/2016_05_02_053512_add_faculty_logs_table.php',
+        'AddRecordLogsTable' => __DIR__ . '/../..' . '/database/migrations/logs/2016_04_30_093936_add_record_logs_table.php',
+        'AddStaffLogsTable' => __DIR__ . '/../..' . '/database/migrations/logs/2016_05_02_053458_add_staff_logs_table.php',
+        'ArchiveLogsTable' => __DIR__ . '/../..' . '/database/migrations/logs/2016_05_02_054201_archive_logs_table.php',
         'CourseTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CourseTableSeeder.php',
         'CreateActivitiesTable' => __DIR__ . '/../..' . '/database/migrations/2016_03_24_111214_create_activities_table.php',
         'CreateApprovedRequestsTable' => __DIR__ . '/../..' . '/database/migrations/2016_04_29_140848_create_approved_requests_table.php',
         'CreateArchivedProfileTable' => __DIR__ . '/../..' . '/database/migrations/2016_04_24_103211_create_archived_profile_table.php',
         'CreateArchivedProfilesTable' => __DIR__ . '/../..' . '/database/migrations/2016_04_24_110533_create_archived_profiles_table.php',
-        'CreateCourseOfferingTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_29_075151_create_course_offering_table.php',
         'CreateCoursesTable' => __DIR__ . '/../..' . '/database/migrations/2016_04_16_112203_create_courses_table.php',
         'CreateDeclinedRequestsTable' => __DIR__ . '/../..' . '/database/migrations/2016_04_30_125208_create_declined_requests_table.php',
         'CreateDegreesTable' => __DIR__ . '/../..' . '/database/migrations/2016_04_16_113633_create_degrees_table.php',
@@ -280,7 +283,15 @@ class ComposerStaticInitf38dfbde21577859027782d53709072f
         'CreateUploadedRecordsTable' => __DIR__ . '/../..' . '/database/migrations/2016_04_25_110412_create_uploaded_records_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'DegreeTableSeeder' => __DIR__ . '/../..' . '/database/seeds/DegreeTableSeeder.php',
+        'DeleteCourseLogsTable' => __DIR__ . '/../..' . '/database/migrations/logs/2016_05_02_054109_delete_course_logs_table.php',
+        'DeleteFacultyLogsTable' => __DIR__ . '/../..' . '/database/migrations/logs/2016_05_02_053546_delete_faculty_logs_table.php',
+        'DeleteRecordLogsTable' => __DIR__ . '/../..' . '/database/migrations/logs/2016_04_30_093944_delete_record_logs_table.php',
+        'DeleteStaffLogsTable' => __DIR__ . '/../..' . '/database/migrations/logs/2016_05_02_053613_delete_staff_logs_table.php',
         'DivisionTableSeeder' => __DIR__ . '/../..' . '/database/seeds/DivisionTableSeeder.php',
+        'EditCourseLogsTable' => __DIR__ . '/../..' . '/database/migrations/logs/2016_05_02_054056_edit_course_logs_table.php',
+        'EditFacultyLogsTable' => __DIR__ . '/../..' . '/database/migrations/logs/2016_05_02_053523_edit_faculty_logs_table.php',
+        'EditRecordLogsTable' => __DIR__ . '/../..' . '/database/migrations/logs/2016_04_30_093941_edit_record_logs_table.php',
+        'EditStaffLogsTable' => __DIR__ . '/../..' . '/database/migrations/logs/2016_05_02_053534_edit_staff_logs_table.php',
         'EmployeeTableSeeder' => __DIR__ . '/../..' . '/database/seeds/EmployeeTableSeeder.php',
         'FacultyPositionTableSeeder' => __DIR__ . '/../..' . '/database/seeds/FacultyPositionTableSeeder.php',
         'IlluminateQueueClosure' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
@@ -288,6 +299,7 @@ class ComposerStaticInitf38dfbde21577859027782d53709072f
         'SpecializationTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SpecializationTableSeeder.php',
         'StaffPositionTableSeeder' => __DIR__ . '/../..' . '/database/seeds/StaffPositionTableSeeder.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
+        'UploadBulkLogsTable' => __DIR__ . '/../..' . '/database/migrations/logs/2016_05_02_054945_upload_bulk_logs_table.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

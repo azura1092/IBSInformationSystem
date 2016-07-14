@@ -1,0 +1,7 @@
+"courseNum","CourseTitle","classification","semOffered","prerequisite","numOfUnits"
+"test","test","Undergraduate","1,2"," ","3"
+"sample","sample","Undergraduate","1,2"," ","3"
+"CMSC 10","lel","Undergraduate","1,2"," ","3"
+"CMSC 11","lel","Graduate","1,2"," ","3"
+"CMSC 12","lel","ehh","1,2"," ","3"
+"CMSC 13","lel","Undergraduate","1,2","yadayada","3"

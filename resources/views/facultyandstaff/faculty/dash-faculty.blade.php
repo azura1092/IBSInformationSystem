@@ -27,6 +27,7 @@
 					<a href="#0">
 						<img src="{{Session::get('avatar')}}" alt="avatar">
 						<?php
+							
 							$enum = Session::get('userEmp')['employeeNum'];
 							$emp = DB::table('employees')->where('employeeNum', '=', $enum)->get();
 						?>

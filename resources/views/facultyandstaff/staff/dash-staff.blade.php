@@ -79,6 +79,7 @@
 					<ul>
 						<li><a href="{{ url('/staff-search-graduate-filter') }}">View All</a></li>
 						<li><a href="{{ url('/graphStaff') }}">Visualize Data</a></li>
+
 					</ul>
 				</li>
 			</ul>

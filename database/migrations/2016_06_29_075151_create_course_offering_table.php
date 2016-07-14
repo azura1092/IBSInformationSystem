@@ -15,6 +15,7 @@ class CreateCourseOfferingTable extends Migration {
 		Schema::create('course_offering', function(Blueprint $table)
 		{
 			$table->engine = 'InnoDB';
+			$table->increments('id');
 			$table->string('courseNum');
 			$table->string('section',10);
 			//$table->integer('units');
