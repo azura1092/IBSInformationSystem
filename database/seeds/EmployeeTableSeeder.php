@@ -237,11 +237,23 @@ class EmployeeTableSeeder extends Seeder {
 			'emailAddress' => 'kdianeartificio@gmail.com'
 			],
 
+			['type' => '1',
+			'firstName'=>'Jun',
+			'lastName'=>'Faculty',
+			'employeeNum'=>'111111111', 
+			'emailAddress'=>'utopia1092@gmail.com'],
+
+			['type' => '0',
+			'firstName'=>'Jun',
+			'lastName'=>'Staff',
+			'employeeNum'=>'000000000', 
+			'emailAddress'=>'sugongdios@gmail.com'],
+
 			['type' => '2',
-			'firstName'=>'John Paul',
-			'lastName'=>'Quijano',
-			'employeeNum'=>'233456789', 
-			'emailAddress'=>'jtquijano@up.edu.ph']
+			'firstName'=>'Jun',
+			'lastName'=>'Admin',
+			'employeeNum'=>'222222222', 
+			'emailAddress'=>'esmitra@up.edu.ph']
 		));
 
 		/*DB::table('employees')->where('employeeNum', '201211111')

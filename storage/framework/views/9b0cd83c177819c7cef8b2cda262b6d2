@@ -1,0 +1,68 @@
+<?php $__env->startSection('content'); ?>
+
+	<?php if(count($approvedusers) == 0 && count($declinedusers) == 0 && count($editnoticeusers) == 0): ?>
+		<h1>No new messages</h1>
+
+	<?php else: ?>
+	<div class="row">
+		<div class="col-xs-12">
+			<h3>Notifications</h3>
+			<hr></hr>
+		</div>
+	</div>
+
+	
+	<div class="update-section">
+		<div class="row">
+			<div class="col-xs-12">
+				<?php foreach($approvedusers as $u): ?>
+					<div class="alert alert-success alert-dismissible" role="alert">
+						<form method="POST" action="<?php echo e(url('/processDismissStaffNotif')); ?>">
+							<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+							<input type="hidden" name="employeeNum" id="employeeNum" value="<?php echo e($u->employeeNum); ?>">
+							<input type="hidden" name="empID" id="empID" value="<?php echo e($u->id); ?>">
+							<input type="hidden" name="notifType" id="notifType" value="approvedRequest">
+							
+							<button type="submit" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							Your profile update request last <?php echo e($u->requestMadeAt); ?> has been approved!	
+						</form>		
+					</div>
+				<?php endforeach; ?>
+
+				<?php foreach($declinedusers as $u): ?>
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<form method="POST" action="<?php echo e(url('/processDismissStaffNotif')); ?>">
+							<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+							<input type="hidden" name="employeeNum" id="employeeNum" value="<?php echo e($u->employeeNum); ?>">
+							<input type="hidden" name="empID" id="empID" value="<?php echo e($u->id); ?>"> 
+							<input type="hidden" name="notifType" id="notifType" value="declinedRequest">
+							
+							<button type="submit" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							Your profile update request last <?php echo e($u->requestMadeAt); ?> was not approved.	
+						</form>		
+					</div>
+				<?php endforeach; ?>
+
+				<?php foreach($editnoticeusers as $u): ?>
+					<div class="alert alert-warning alert-dismissible" role="alert">
+						<form method="POST" action="<?php echo e(url('/processDismissStaffNotif')); ?>">
+							<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+							<input type="hidden" name="employeeNum" id="employeeNum" value="<?php echo e($u->employeeNum); ?>">
+							<input type="hidden" name="empID" id="empID" value="<?php echo e($u->id); ?>"> 
+							<input type="hidden" name="notifType" id="notifType" value="editNotice">
+							
+							<button type="submit" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							The administrator made changes to your basic profile information.	
+						</form>		
+					</div>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	</div>
+	<?php endif; ?>
+
+
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('facultyandstaff.staff.dash-staff', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

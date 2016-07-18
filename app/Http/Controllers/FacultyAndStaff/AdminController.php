@@ -132,6 +132,34 @@ class AdminController extends MainController
 			if(Session::get('type') == 2)
 			{
 				global $temp;
+
+				// data validation for add faculty employee module
+				$inputs = Input::all();
+				$rules = array(
+					'employeeNumber' => 'required|digits:10|unique:employees,employeeNum',
+					'firstName' => 'required|min:2',
+					'middleName' => 'required|min:2',
+					'lastName' => 'required|min:2',
+					'sex' => 'required',
+					'birthdate' => 'required|date',
+					'position' => 'required|exists:faculty_positions,positionTitle',
+					'division' => 'required|exists:divisions,division',
+					'contactNumber' => 'required',
+					'emailAddress' => 'email|required|min:6|unique:employees,emailAddress',
+					'currentAddress' => 'required|min:5',
+					'permanentAddress' => 'required|min:5',
+					'degree' => 'required|exists:degrees,degree',
+					'specialization' => 'required|exists:specializations,specialization',
+					'yearGraduated' => 'required|digits:4',
+					'school' => 'required|min:4'
+				);
+				// test input against the set rules
+				$validation = Validator::make($inputs, $rules);
+
+				if($validation->fails()){
+					return redirect('add-faculty-employee')->withInput()->withErrors($validation->errors());
+				}
+
 				$type = 1;
 				$employeeNumber = Input::get('employeeNumber');
 				$firstName = Input::get('firstName');
@@ -183,6 +211,30 @@ class AdminController extends MainController
 			if(Session::get('type') == 2)
 			{
 				global $temp;
+
+				// data validation for add staff employee module
+				$inputs = Input::all();
+				$rules = array(
+					'employeeNumber' => 'required|digits:10|unique:employees,employeeNum',
+					'firstName' => 'required|min:2',
+					'middleName' => 'required|min:2',
+					'lastName' => 'required|min:2',
+					'sex' => 'required',
+					'birthdate' => 'required|date',
+					'position' => 'required|exists:staff_positions,positionTitle',
+					'contactNumber' => 'required',
+					'emailAddress' => 'email|required|min:6|unique:employees,emailAddress',
+					'currentAddress' => 'required|min:5',
+					'permanentAddress' => 'required|min:5'
+
+				);
+				// test input against the set rules
+				$validation = Validator::make($inputs, $rules);
+
+				if($validation->fails()){
+					return redirect('add-staff-employee')->withInput()->withErrors($validation->errors());
+				}
+
 				$type = 0;
 				$employeeNumber = Input::get('employeeNumber');
 				$firstName = Input::get('firstName');
@@ -383,6 +435,28 @@ class AdminController extends MainController
 			if(Session::get('type') == 2)
 			{
 				$enum = Input::get('employeeNum');
+
+				// data validation for edit employee module
+				$inputs = Input::all();
+				$rules = array(
+					'employeeNumber' => 'digits:10|unique:employees,employeeNum',
+					'firstName' => 'required|min:2',
+					'middleName' => 'required|min:2',
+					'lastName' => 'required|min:2',
+					'sex' => 'required',
+					'birthdate' => 'required|date',
+					'contactNumber' => 'required',
+					'emailAddress' => 'email|required|min:6',
+					'currentAddress' => 'required|min:5',
+					'permanentAddress' => 'required|min:5'
+
+				);
+				// test input against the set rules
+				$validation = Validator::make($inputs, $rules);
+
+				if($validation->fails()){
+					return redirect('edit-employee')->withInput()->withErrors($validation->errors());
+				}
 
 				Employees::where('employeeNum', '=', $enum)->update(array("firstName"=>Input::get('firstName'), "middleName"=>Input::get('middleName'), "lastName"=>Input::get('lastName'), "birthdate"=>Input::get('birthdate'), "position"=>Input::get('position'), "division"=>Input::get('division'), "sex"=>Input::get('sex'), "contactNum"=>Input::get('contactNumber'), "emailAddress"=>Input::get('emailAddress'), "currentAddress"=>Input::get('currentAddress'), "permanentAddress"=>Input::get('permanentAddress'), "degree"=>Input::get('degree'), "specialization"=>Input::get('specialization'), "schoolGraduated"=>Input::get('school'), "yearGraduated"=>Input::get('yearGraduated')
 					));
@@ -1338,6 +1412,23 @@ class AdminController extends MainController
 			{
 		    	$courses = Course::all();
 		    	$temp = Session::get('temp');
+
+		    	// data validation for add course module
+				$inputs = Input::all();
+				$rules = array(
+					'courseNum' => 'required|min:3|unique:courses,courseNum',
+					'courseTitle' => 'required|min:2',
+					'classification' => 'required',
+					'numOfUnits' => 'required|min:1',
+					'prerequisite' => 'required',
+
+				);
+				// test input against the set rules
+				$validation = Validator::make($inputs, $rules);
+
+				if($validation->fails()){
+					return redirect('add-course')->withInput()->withErrors($validation->errors());
+				}
 
 		    	$courseNum = Input::get('courseNum');
 		    	$courseTitle = Input::get('courseTitle');

@@ -11,6 +11,7 @@ use Session;
 use Auth;
 use File;
 use Request;
+use Validator;
 
 use App\Employee;
 use App\Degree;
@@ -118,6 +119,33 @@ class FacultyController extends MainController
 				$enum = Input::get('employeeNum');
 				$user = Employee::where('employeeNum', '=', $enum)->get();
 				$requestexist = EditRequest::where('employeeNum', '=', $enum)->get();
+
+				$inputs = Input::all();
+				$rules = array(
+					'employeeNum' => 'required|digits:10|unique:employees,employeeNum',
+					'firstName' => 'required|min:2',
+					'middleName' => 'required|min:2',
+					'lastName' => 'required|min:2',
+					'sex' => 'required',
+					'birthdate' => 'required|date',
+					'position' => 'required|exists:faculty_positions,positionTitle',
+					'division' => 'required|exists:divisions,division',
+					'contactNum' => 'required',
+					'emailAddress' => 'email|required|min:6|unique:employees,emailAddress',
+					'currentAddress' => 'required|min:5',
+					'permanentAddress' => 'required|min:5',
+					'degree' => 'required|exists:degrees,degree',
+					'specialization' => 'required|exists:specializations,specialization',
+					'yearGraduated' => 'required|digits:4',
+					'schoolGraduated' => 'required|min:4'
+
+				);
+				// test input against the set rules
+				$validation = Validator::make($inputs, $rules);
+
+				if($validation->fails()){
+					return redirect('edit-faculty-profile')->withInput()->withErrors($validation->errors());
+				}
 
 				$timestamp = date('Y-m-d H:i:s');
 				

@@ -1,0 +1,28 @@
+<?php $__env->startSection('content'); ?>
+
+<?php if($error != ""): ?>
+
+	<div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php echo e($error); ?>
+
+	</div>
+
+<?php endif; ?>
+
+<header role="banner">
+		<div id="cd-logo"><a href="#0"><img src="<?php echo e(asset('img/logo.png')); ?>" alt="Logo"></a></div>
+
+		<nav class="main-nav">
+			<ul>
+				<li><a class="btn btn-block btn-social btn-google" href="<?php echo e(url('auth/google')); ?>">
+    					<span class="fa fa-google"></span> Sign in with Google
+  					</a>
+  				</li>
+			</ul>
+		</nav>
+</header>
+	
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

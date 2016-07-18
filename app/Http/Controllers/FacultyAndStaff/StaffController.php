@@ -8,6 +8,7 @@ use Input;
 use DB;
 use Session;
 use Auth;
+use Validator;
 
 use App\Employee;
 use App\Graduate;
@@ -110,6 +111,28 @@ class StaffController extends MainController
 				$enum = Input::get('employeeNum');
 				$user = Employee::where('employeeNum', '=', $enum)->get();
 				$requestexist = EditRequest::where('employeeNum', '=', $enum)->get();
+
+				$inputs = Input::all();
+				$rules = array(
+					'employeeNum' => 'required|digits:10|unique:employees,employeeNum',
+					'firstName' => 'required|min:2',
+					'middleName' => 'required|min:2',
+					'lastName' => 'required|min:2',
+					'sex' => 'required',
+					'birthdate' => 'required|date',
+					'position' => 'required|exists:staff_positions,positionTitle',
+					'contactNum' => 'required',
+					'emailAddress' => 'email|required|min:6',
+					'currentAddress' => 'required|min:5',
+					'permanentAddress' => 'required|min:5'
+
+				);
+				// test input against the set rules
+				$validation = Validator::make($inputs, $rules);
+
+				if($validation->fails()){
+					return redirect('edit-staff-profile')->withInput()->withErrors($validation->errors());
+				}
 
 				$timestamp = date('Y-m-d H:i:s');
 

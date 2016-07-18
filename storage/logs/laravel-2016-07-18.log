@@ -1,0 +1,91 @@
+[2016-07-18 18:07:46] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp\www\Practicum\Current\IBSInformationSystem\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp\www\Practicum\Current\IBSInformationSystem\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp\www\Practicum\Current\IBSInformationSystem\server.php(21): require_once('C:\\wamp\\www\\Pra...')
+#8 {main}  
+[2016-07-18 18:07:56] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp\www\Practicum\Current\IBSInformationSystem\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp\www\Practicum\Current\IBSInformationSystem\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp\www\Practicum\Current\IBSInformationSystem\server.php(21): require_once('C:\\wamp\\www\\Pra...')
+#8 {main}  
+[2016-07-18 18:08:00] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp\www\Practicum\Current\IBSInformationSystem\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp\www\Practicum\Current\IBSInformationSystem\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp\www\Practicum\Current\IBSInformationSystem\server.php(21): require_once('C:\\wamp\\www\\Pra...')
+#8 {main}  
+[2016-07-18 18:08:03] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp\www\Practicum\Current\IBSInformationSystem\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp\www\Practicum\Current\IBSInformationSystem\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp\www\Practicum\Current\IBSInformationSystem\server.php(21): require_once('C:\\wamp\\www\\Pra...')
+#8 {main}  
+[2016-07-18 18:14:00] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'App\Http\Controllers\FacultyAndStaff\Validator' not found' in C:\wamp\www\Practicum\Current\IBSInformationSystem\app\Http\Controllers\FacultyAndStaff\StaffController.php:130
+Stack trace:
+#0 {main}  
+[2016-07-18 18:14:20] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp\www\Practicum\Current\IBSInformationSystem\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp\www\Practicum\Current\IBSInformationSystem\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp\www\Practicum\Current\IBSInformationSystem\server.php(21): require_once('C:\\wamp\\www\\Pra...')
+#8 {main}  
+[2016-07-18 18:14:22] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp\www\Practicum\Current\IBSInformationSystem\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp\www\Practicum\Current\IBSInformationSystem\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp\www\Practicum\Current\IBSInformationSystem\server.php(21): require_once('C:\\wamp\\www\\Pra...')
+#8 {main}  
+[2016-07-18 18:16:05] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp\www\Practicum\Current\IBSInformationSystem\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp\www\Practicum\Current\IBSInformationSystem\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp\www\Practicum\Current\IBSInformationSystem\server.php(21): require_once('C:\\wamp\\www\\Pra...')
+#8 {main}  
+[2016-07-18 18:16:09] local.ERROR: exception 'InvalidArgumentException' with message 'View [errors.404] not found.' in C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:140
+Stack trace:
+#0 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(77): Illuminate\View\FileViewFinder->findInPaths('errors.404', Array)
+#1 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\View\Factory.php(145): Illuminate\View\FileViewFinder->find('errors.404')
+#2 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(68): Illuminate\View\Factory->make('errors.404', Array)
+#3 C:\wamp\www\Practicum\Current\IBSInformationSystem\app\Exceptions\Handler.php(42): Illuminate\Routing\ResponseFactory->view('errors.404', Array, 404)
+#4 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(248): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 C:\wamp\www\Practicum\Current\IBSInformationSystem\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(90): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 C:\wamp\www\Practicum\Current\IBSInformationSystem\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#7 C:\wamp\www\Practicum\Current\IBSInformationSystem\server.php(21): require_once('C:\\wamp\\www\\Pra...')
+#8 {main}  
