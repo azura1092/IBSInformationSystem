@@ -1,23 +1,21 @@
-@extends('facultyandstaff.admin.dash-admin')
+<?php $__env->startSection('content'); ?>
+	<?php if(count($errors) > 0): ?>
 
-@section('content')
-	@if(count($errors) > 0)
-
-		@foreach ($errors->all() as $error)
+		<?php foreach($errors->all() as $error): ?>
     	 	<div class="alert alert-danger alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            	 <li>{{ $error }}</li>
+            	 <li><?php echo e($error); ?></li>
     		</div>
-         @endforeach
+         <?php endforeach; ?>
 
-	@elseif($status == 2)
+	<?php elseif($status == 2): ?>
 
 		<div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             Successfully added the record!
     	</div>
 
-	@endif
+	<?php endif; ?>
 
 	<div class="row">				
 		<div class="col-xs-12">
@@ -29,8 +27,8 @@
 				<div class="update-section">
 					<div class="row">
 						<div class="col-xs-12">
-							<form class="form-horizontal" data-toggle="validator" method="POST" action="{{ url('/processAddEmployee') }}">
-								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<form class="form-horizontal" data-toggle="validator" method="POST" action="<?php echo e(url('/processAddEmployee')); ?>">
+								<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Employee Number</label>
 									<div class="col-sm-7">
@@ -67,9 +65,9 @@
 									<div class="col-sm-7">
 										<select class="form-control" name="position" id="position" data-error="Please pick a position." required>
 											<option selected disabled></option>
-											@foreach($positions as $p)
-												<option>{{ $p->positionTitle }}</option>
-											@endforeach
+											<?php foreach($positions as $p): ?>
+												<option><?php echo e($p->positionTitle); ?></option>
+											<?php endforeach; ?>
 										</select>	
 										<div class="help-block with-errors"></div>
 									</div>
@@ -80,9 +78,9 @@
 									<div class="col-sm-7">
 										<select class="form-control" name="division" id="division" data-error="Please pick a division." required>
 											<option selected disabled></option>
-											@foreach($divisions as $d)
-												<option>{{ $d->division }}</option>
-											@endforeach
+											<?php foreach($divisions as $d): ?>
+												<option><?php echo e($d->division); ?></option>
+											<?php endforeach; ?>
 										</select>
 										<div class="help-block with-errors"></div>
 									</div>
@@ -127,7 +125,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Current Address</label>
 									<div class="col-sm-7">
-										<textarea class="form-control" name="currentAddress" id="currentAddress" data-minlength="5" required>{{{old('currentAddress')}}}</textarea>
+										<textarea class="form-control" name="currentAddress" id="currentAddress" data-minlength="5" required><?php echo e(old('currentAddress')); ?></textarea>
 										<div class="help-block with-errors"></div>
 									</div>
 								</div>
@@ -135,7 +133,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Permanent Address</label>
 									<div class="col-sm-7">
-										<textarea class="form-control" name="permanentAddress" id="permanentAddress" data-minlength="5" required>{{{old('lastName')}}}</textarea>
+										<textarea class="form-control" name="permanentAddress" id="permanentAddress" data-minlength="5" required><?php echo e(old('lastName')); ?></textarea>
 										<div class="help-block with-errors"></div>
 									</div>
 								</div>
@@ -145,9 +143,9 @@
 									<div class="col-sm-7">
 										<select class="form-control" name="degree" id="degree" data-error="Please pick a degree." required>
 											<option selected disabled></option>
-											@foreach($degrees as $d)
-												<option>{{ $d->degree }}</option>
-											@endforeach
+											<?php foreach($degrees as $d): ?>
+												<option><?php echo e($d->degree); ?></option>
+											<?php endforeach; ?>
 										</select>
 										<div class="help-block with-errors"></div>
 									</div>
@@ -158,9 +156,9 @@
 									<div class="col-sm-7">
 										<select class="form-control" name="specialization" id="specialization" data-error="Please pick a specialization." required>
 											<option selected disabled></option>
-											@foreach($specializations as $s)
-												<option>{{ $s->specialization }}</option>
-											@endforeach
+											<?php foreach($specializations as $s): ?>
+												<option><?php echo e($s->specialization); ?></option>
+											<?php endforeach; ?>
 										</select>
 										<div class="help-block with-errors"></div>
 									</div>
@@ -193,4 +191,5 @@
 					</div>
 				</div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('facultyandstaff.admin.dash-admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

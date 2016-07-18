@@ -1,23 +1,21 @@
-@extends('facultyandstaff.admin.dash-admin')
+<?php $__env->startSection('content'); ?>
+	<?php if(count($errors) > 0): ?>
 
-@section('content')
-	@if(count($errors) > 0)
-
-		@foreach ($errors->all() as $error)
+		<?php foreach($errors->all() as $error): ?>
     	 	<div class="alert alert-danger alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            	 <li>{{ $error }}</li>
+            	 <li><?php echo e($error); ?></li>
     		</div>
-         @endforeach
+         <?php endforeach; ?>
 
-	@elseif($status == 2)
+	<?php elseif($status == 2): ?>
 
 		<div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             Successfully added the record!
     	</div>
 
-	@endif
+	<?php endif; ?>
 
 	<div class="row">				
 		<div class="col-xs-12">
@@ -29,19 +27,19 @@
 				<div class="update-section">
 					<div class="row">
 						<div class="col-xs-12">
-							<form class="form-horizontal" data-toggle="validator" method="POST" action="{{ url('/processAddStaffEmployee') }}">
-								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<form class="form-horizontal" data-toggle="validator" method="POST" action="<?php echo e(url('/processAddStaffEmployee')); ?>">
+								<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Employee Number</label>
 									<div class="col-sm-7">
-										<input class="form-control" name="employeeNumber" id="employeeNumber" type="text" value="{{old('employeeNumber')}}" maxlength="10" data-minlength="10" data-error="Please input a valid employee number." required>
+										<input class="form-control" name="employeeNumber" id="employeeNumber" type="text" value="<?php echo e(old('employeeNumber')); ?>" maxlength="10" data-minlength="10" data-error="Please input a valid employee number." required>
 										<div class="help-block with-errors"></div>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">First Name</label>
 									<div class="col-sm-7">
-										<input class="form-control" name="firstName" id="firstName" type="text" value="{{old('firstName')}}" required>
+										<input class="form-control" name="firstName" id="firstName" type="text" value="<?php echo e(old('firstName')); ?>" required>
 										<div class="help-block with-errors"></div>
 									</div>
 								</div>	
@@ -49,7 +47,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Middle Name</label>
 									<div class="col-sm-7">
-										<input class="form-control" name="middleName" id="middleName" type="text" value="{{old('middleName')}}" required>
+										<input class="form-control" name="middleName" id="middleName" type="text" value="<?php echo e(old('middleName')); ?>" required>
 										<div class="help-block with-errors"></div>
 									</div>
 								</div>
@@ -57,7 +55,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Last Name</label>
 									<div class="col-sm-7">
-										<input class="form-control" name="lastName" id="lastName" type="text" value="{{old('lastName')}}" required>
+										<input class="form-control" name="lastName" id="lastName" type="text" value="<?php echo e(old('lastName')); ?>" required>
 										<div class="help-block with-errors"></div>
 									</div>
 								</div>
@@ -67,9 +65,9 @@
 									<div class="col-sm-7">
 										<select class="form-control" name="position" id="position" data-error="Please pick a position." required>
 											<option selected disabled></option>
-											@foreach($positions as $p)
-												<option value="{{ $p->positionTitle }}" @if (Input::old('position') == $p->positionTitle) selected="selected" @endif>{{ $p->positionTitle }}</option>
-											@endforeach
+											<?php foreach($positions as $p): ?>
+												<option value="<?php echo e($p->positionTitle); ?>" <?php if(Input::old('position') == $p->positionTitle): ?> selected="selected" <?php endif; ?>><?php echo e($p->positionTitle); ?></option>
+											<?php endforeach; ?>
 										</select>	
 										<div class="help-block with-errors"></div>	
 									</div>
@@ -80,8 +78,8 @@
 									<div class="col-sm-7">
 										<select class="form-control" name="sex" id="sex" data-error="Please indicate your sex."  required>
 											<option selected disabled></option>
-											<option name="Female" value="Female" @if (Input::old('sex') == 'Female') selected="selected" @endif>Female</option>
-											<option name="Male" value="Male" @if (Input::old('sex') == 'Male') selected="selected" @endif>Male</option>
+											<option name="Female" value="Female" <?php if(Input::old('sex') == 'Female'): ?> selected="selected" <?php endif; ?>>Female</option>
+											<option name="Male" value="Male" <?php if(Input::old('sex') == 'Male'): ?> selected="selected" <?php endif; ?>>Male</option>
 										</select>
 										<div class="help-block with-errors"></div>
 									</div>
@@ -90,7 +88,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Birthdate</label>
 									<div class="col-sm-7">
-										<input class="form-control" name="birthdate" id="birthdate" data-error="Please provide a valid date." type="date" value="{{old('birthdate')}}" required>
+										<input class="form-control" name="birthdate" id="birthdate" data-error="Please provide a valid date." type="date" value="<?php echo e(old('birthdate')); ?>" required>
 										<div class="help-block with-errors"></div>
 									</div>
 								</div>
@@ -98,7 +96,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Contact Number</label>
 									<div class="col-sm-7">
-										<input class="form-control" name="contactNumber" id="contactNumber" type="text" value="{{old('contactNumber')}}" data-minlength="5" required>
+										<input class="form-control" name="contactNumber" id="contactNumber" type="text" value="<?php echo e(old('contactNumber')); ?>" data-minlength="5" required>
 										<div class="help-block with-errors"></div>
 									</div>
 								</div>
@@ -106,7 +104,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Email Address</label>
 									<div class="col-sm-7">
-										<input class="form-control" name="emailAddress" id="emailAddress" type="email" value="{{old('emailAddress')}}" data-minlength="6" required>
+										<input class="form-control" name="emailAddress" id="emailAddress" type="email" value="<?php echo e(old('emailAddress')); ?>" data-minlength="6" required>
 										<div class="help-block with-errors"></div>
 									</div>
 								</div>
@@ -114,7 +112,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Current Address</label>
 									<div class="col-sm-7">
-										<textarea class="form-control" name="currentAddress" id="currentAddress" data-minlength="5" required>{{{old('currentAddress')}}}</textarea>
+										<textarea class="form-control" name="currentAddress" id="currentAddress" data-minlength="5" required><?php echo e(old('currentAddress')); ?></textarea>
 										<div class="help-block with-errors"></div>
 									</div>
 								</div>
@@ -122,7 +120,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Permanent Address</label>
 									<div class="col-sm-7">
-										<textarea class="form-control" name="permanentAddress" id="permanentAddress" data-minlength="5" required>{{{old('lastName')}}}</textarea>
+										<textarea class="form-control" name="permanentAddress" id="permanentAddress" data-minlength="5" required><?php echo e(old('lastName')); ?></textarea>
 										<div class="help-block with-errors"></div>
 									</div>
 								</div>
@@ -144,4 +142,5 @@
 					</div>
 				</div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('facultyandstaff.admin.dash-admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

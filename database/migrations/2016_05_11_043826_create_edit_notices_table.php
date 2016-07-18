@@ -32,6 +32,7 @@ class CreateEditNoticesTable extends Migration {
 			$table->string('specialization');
 			$table->string('schoolGraduated');
 			$table->string('yearGraduated');
+			$table->timestamps();
 		});
 	}
 
