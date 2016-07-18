@@ -1,8 +1,16 @@
 @extends('facultyandstaff.admin.dash-admin')
 
 @section('content')
+	@if(count($errors) > 0)
 
-	@if($status == 1)
+		@foreach ($errors->all() as $error)
+    	 	<div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            	 <li>{{ $error }}</li>
+    		</div>
+         @endforeach
+
+	@elseif($status == 1)
 
 		<div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
