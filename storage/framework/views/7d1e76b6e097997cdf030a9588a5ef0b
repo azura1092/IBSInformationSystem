@@ -258,7 +258,7 @@
 			}
 
 			else if(buttonID == 'delete-course-btn'){
-				$('.modal-body').text("Are you sure you want to delete the selected course?");
+				$('.modal-body').html("Are you sure you want to delete " + $('#course-getter').val() + "?");
 			}
 		});
 	});

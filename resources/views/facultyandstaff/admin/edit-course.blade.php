@@ -48,7 +48,13 @@
 							<select class="form-control" name="courseNum" id="course-getter" required>
 								<option disabled selected></option>
 								@foreach($courses as $c)
-									<option value="{{ $c->courseNum }}">{{ $c->courseNum }} - {{ $c->courseTitle }}</option>
+									<option value="{{ $c->courseNum }}"
+									@if ($s == 1)
+										@if($c->courseNum == $courseSelected[0]->courseNum)
+											selected="selected"
+										@endif
+									@endif>
+									{{ $c->courseNum }} - {{ $c->courseTitle }}</option>
 								@endforeach
 							</select>
 						</div>

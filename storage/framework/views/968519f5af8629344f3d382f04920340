@@ -46,7 +46,13 @@
 							<select class="form-control" name="courseNum" id="course-getter" required>
 								<option disabled selected></option>
 								<?php foreach($courses as $c): ?>
-									<option value="<?php echo e($c->courseNum); ?>"><?php echo e($c->courseNum); ?> - <?php echo e($c->courseTitle); ?></option>
+									<option value="<?php echo e($c->courseNum); ?>"
+									<?php if($s == 1): ?>
+										<?php if($c->courseNum == $courseSelected[0]->courseNum): ?>
+											selected="selected"
+										<?php endif; ?>
+									<?php endif; ?>>
+									<?php echo e($c->courseNum); ?> - <?php echo e($c->courseTitle); ?></option>
 								<?php endforeach; ?>
 							</select>
 						</div>
@@ -72,7 +78,7 @@
 
 	<div class="row">
 		<div class="col-xs-12">
-			<form class="form-horizontal" method="POST" action="<?php echo e(url('/processEditCourse')); ?>">
+			<form class="form-horizontal" method="POST"  action="<?php echo e(url('/processEditCourse')); ?>">
 				<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 				<input type="hidden" name="courseNum" id="courseNum" value="<?php echo e($courses[0]->courseNum); ?>">								
 
