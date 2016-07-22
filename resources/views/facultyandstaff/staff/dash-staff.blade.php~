@@ -99,7 +99,7 @@
 <script src="js/jquery.menu-aim.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/dashboard.js"></script> <!-- Resource jQuery -->
-<script src="js/validator.js"></script> <!-- Validator jQuery -->
+<script src="js/dashboard.js"></script> <!-- Validator jQuery -->
 <script>
 	$(document).ready(function(e){
 		$('.search-panel .dropdown-menu').find('a').click(function(e){
